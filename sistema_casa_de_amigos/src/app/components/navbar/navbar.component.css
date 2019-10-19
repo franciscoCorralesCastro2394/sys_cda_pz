@@ -1,0 +1,7 @@
+img {
+    border-radius: 50%;
+}
+
+.img-perfil img {
+    max-width: 30px;
+}

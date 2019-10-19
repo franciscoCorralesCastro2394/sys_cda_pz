@@ -1,0 +1,36 @@
+<br>
+<br>
+<div class="container">
+    <table id="customers">
+        <tr>
+            <th>#</th>
+            <th>Nombre Usuario</th>
+            <th>Correo</th>
+            <th>Roles</th>
+            <th>Guardar</th>
+            <th>Eliminar</th>
+        </tr>
+        <tr *ngFor="let user of (users$ | async); let i=index">
+            <td>{{i + 1}}</td>
+            <td>{{user.FirstName + user.LastName}}</td>
+            <td>{{user.Email}}</td>
+            <td>
+                <input type="text" #rol value="{{user.roles}}">
+            </td>
+            <td>
+                <div class="pull-right">
+                    <button type="button" class="btn btn-outline-info btn-xs" (click)="guardarCambios(user,rol.value)">
+                    <span class="fa fa-save"></span>
+                </button>
+                </div>
+            </td>
+            <td>
+                <div class="pull-right">
+                    <button type="button" class="btn btn-outline-danger btn-xs" (click)="EliminarCambios(user)">
+                    <span class="fas fa-trash"></span>
+                </button>
+                </div>
+            </td>
+        </tr>
+    </table>
+</div>

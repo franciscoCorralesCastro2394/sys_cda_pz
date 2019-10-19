@@ -1,0 +1,126 @@
+<br>
+<br>
+<div class="container">
+    <h2 class="section-title">Editar Sitio</h2>
+    <form [formGroup]="formGroupSitioEdit" id="formGroupSitioEdit" class="row" *ngIf="!createdSitioId">
+        <div class="form-group col-6">
+            <label for="id">Id de la Noticia</label>
+            <input class="form-control" formControlName="id" id="id" type="text" readonly>
+        </div>
+        <div class="form-group col-12" formArrayName="imagenes" *ngIf="sitioId">
+            <label for="titulo">Imagenes</label>
+            <div class="input-group mb-3" *ngFor="let imagen of formGroupSitioEdit.controls['imagenes'].controls; let i = index">
+                <input readonly type="text" [formControlName]="i" class="form-control " id="imagen" placeholder="Escriba la url de la imagen">
+                <div class="input-group-append">
+                    <button class="btn btn-outline-danger" (click)="borrarImagen($event,i)" type="button" id="button-addon2"><i
+                    class="fa fa-times"></i></button>
+                </div>
+            </div>
+            <div *ngIf="formGroupSitioEdit.controls['imagenes'].dirty">
+                <div class="form-control-feedback text-danger" *ngIf="formGroupSitioEdit.controls['imagenes'].errors?.required">
+                    Debe completar la url de cada imagen
+                </div>
+            </div>
+            <div class="form-group col-12" *ngIf="currentUpload">
+                <div class="progress">
+                    <div class="progress-bar progress-bar-animated" [ngStyle]="{ 'width': currentUpload?.progress + '%' }"></div>
+                </div>
+                {{currentUpload?.name}} Progreso: | {{currentUpload?.progress | number:'2.2-2'}}% avance
+            </div>
+            <div class="form-group col-12 custom-file mb-3">
+                <input type="file" class="custom-file-input" id="customFile" (change)="detectFiles($event)">
+                <label class="custom-file-label" for="customFile">Seleccionar imagen</label>
+            </div>
+            <button class="btn btn-outline-primary mb-3  btn-sm" [disabled]="!selectedFiles" (click)="uploadSingle()">
+            Agregar archivo
+            </button>
+        </div>
+        <div class="form-group col-12">
+            <label for="nombre">Nombre</label>
+            <input type="text" class="form-control" formControlName="nombre" id="nombre" placeholder="Escriba el título">
+            <div *ngIf="formGroupSitioEdit.controls['nombre'].dirty">
+                <div class="form-control-feedback text-danger" *ngIf="formGroupSitioEdit.controls['nombre'].errors?.required">
+                    El Nombre es requerido
+                </div>
+            </div>
+        </div>
+        <div class="form-group col-12">
+            <label for="descripcion">Descripción</label>
+            <input type="text" class="form-control" formControlName="descripcion" id="descripcion" placeholder="Escriba la descripción">
+            <div *ngIf="formGroupSitioEdit.controls['descripcion'].dirty">
+                <div class="form-control-feedback text-danger" *ngIf="formGroupSitioEdit.controls['descripcion'].errors?.required">
+                    La descripción es requerida
+                </div>
+                <div class="form-control-feedback text-danger" *ngIf="formGroupSitioEdit.controls['descripcion'].errors?.minlength">
+                    La descripción debe ser de almenos 15 caracteres
+                </div>
+            </div>
+        </div>
+        <div class="form-group col-12">
+            <label for="horario">Horario</label>
+            <input type="text" class="form-control" formControlName="horario" id="horario" placeholder="Escriba la Horario">
+            <div *ngIf="formGroupSitioEdit.controls['horario'].dirty">
+                <div class="form-control-feedback text-danger" *ngIf="formGroupSitioEdit.controls['horario'].errors?.required">
+                    La Horario es requerida
+                </div>
+                <div class="form-control-feedback text-danger" *ngIf="formGroupSitioEdit.controls['horario'].errors?.minlength">
+                    La Horario debe ser de almenos 15 caracteres
+                </div>
+            </div>
+        </div>
+        <div class="form-group col-12">
+            <label for="videoYB">videoYB</label>
+            <input type="text" class="form-control" formControlName="videoYB" id="videoYB" placeholder="Escriba la videoYB">
+            <div *ngIf="formGroupSitioEdit.controls['videoYB'].dirty">
+                <div class="form-control-feedback text-danger" *ngIf="formGroupSitioEdit.controls['videoYB'].errors?.required">
+                    La videoYB es requerida
+                </div>
+                <div class="form-control-feedback text-danger" *ngIf="formGroupSitioEdit.controls['videoYB'].errors?.minlength">
+                    La videoYB debe ser de almenos 15 caracteres
+                </div>
+            </div>
+        </div>
+        <div class="form-group col-12">
+            <label for="Editor">Editor</label>
+            <select class="form-control" formControlName="Editor" id="Editor" id="" *ngIf="editores$">
+                <option value="">Seleccione un Editor</option>
+                <option *ngFor = "let editor of (editores$ | async)" [value]="editor.Email"> {{editor.Email}}</option>
+            </select>
+            <div *ngIf="formGroupSitioEdit.controls['Editor'].dirty">
+                <div class="form-control-feedback text-danger" *ngIf="formGroupSitioEdit.controls['Editor'].errors?.required">
+                    La Editor es requerida
+                </div>
+                <div class="form-control-feedback text-danger" *ngIf="formGroupSitioEdit.controls['Editor'].errors?.minlength">
+                    La Editor debe ser de almenos 15 caracteres
+                </div>
+            </div>
+        </div>
+        <button type="submit" class="btn texto_secundario float-right m-b-5" [ngClass]="{'disabled':!formGroupSitioEdit.valid}" (click)="guardarData()">Guardar</button>
+    </form>
+    <form [formGroup]="formGroupSitioEditImagenes" id="formGroupSitioEditImagenes" class="row" *ngIf="createdSitioId">
+        <div class="form-group  col-12" formArrayName="imagenes">
+            <label for="titulo">Imagenes</label>
+            <div *ngIf="formGroupSitioEditImagenes.controls['imagenes'].dirty">
+                <div class="form-control-feedback text-danger" *ngIf="formGroupSitioEditImagenes.controls['imagenes'].errors?.required">
+                    Debe completar la url de cada imagen
+                </div>
+            </div>
+            <div class="form-group col-12" *ngIf="currentUpload">
+                <div class="progress">
+                    <div class="progress-bar progress-bar-animated" [ngStyle]="{ 'width': currentUpload?.progress + '%' }"></div>
+                </div>
+                {{currentUpload?.name}} Progreso: | {{currentUpload?.progress | number:'2.2-2'}}% avance
+            </div>
+            <div class="form-group col-12 custom-file mb-3">
+                <input type="file" class="custom-file-input" id="customFile" (change)="detectFiles($event)">
+                <label class="custom-file-label" for="customFile">Seleccionar imagen</label>
+            </div>
+            <button class="btn btn-outline-primary mb-3  btn-sm" [disabled]="!selectedFiles" (click)="uploadSingle()">
+      Agregar archivo
+    </button>
+            <button class="btn btn-outline-primary mb-3  btn-sm" (click)="listo()">
+        Listo
+      </button>
+        </div>
+    </form>
+</div>

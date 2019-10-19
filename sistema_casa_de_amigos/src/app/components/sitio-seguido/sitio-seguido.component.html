@@ -1,0 +1,134 @@
+<div class="container-fluid">
+    <div class="clear"><br><br></div>
+    <div class="container" *ngIf="sitio">
+        <div class="row">
+            <div class="col-md-4">
+                <h1 class="text-center section-title h1">{{sitio.nombre}}</h1>
+                <p class="text-justify">{{sitio.descripcion}}</p>
+                <p><strong>Horario: </strong>{{sitio.horario}}</p>
+            </div>
+            <div class="col-md-8">
+                <img class="img-fluid" [src]="sitio.imgs[0]" alt="card image">
+            </div>
+        </div>
+        <br>
+        <br>
+        <div class="row">
+            <div class="col-md-2">
+                <button type="button" class="btn btn-outline-info" data-toggle="modal" data-target="#calificacionModal">
+                    Calificar Sitio
+                    <i class="fa fa-calendar-check-o"></i>
+                  </button>
+            </div>
+            <div class="col-md-2">
+                <button type="button" class="btn btn-outline-info" data-toggle="modal" data-target="#ComentarioModal">
+                        Agregar Comentario 
+                        <i class="far fa-keyboard"></i>
+                      </button>
+            </div>
+            <div class="col-md-2">
+                <button type="button" class="btn btn-outline-info" (click)="seguirSitio()">
+                                Seguir Sitio
+                                <i class="fa fa-heart"></i>
+                              </button>
+            </div>
+            <div class="col-md-6">
+            </div>
+
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="calificacionModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Calificación del Sitio</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-2 col-xs-12">
+                            <button type="button" [ngClass]="{ btnSelec : botonesCal.btn1, btn : !botonesCal.btn1  , btn2 : botonesCal.btn1 }" class=" btn texto_secundario" (click)="calificar(1)">
+                                                        <img class="imgIcon" src="../../../assets/cal/enojado.png" alt="">
+                                                        <span class="badge badge-light">Enojo</span>
+                                    </button>
+                        </div>
+                        <div class="col-md-2 col-xs-12">
+                            <button type="button" [ngClass]="{ btnSelec : botonesCal.btn2 , btn : !botonesCal.btn2 , btn2 : botonesCal.btn2 }" class="btn texto_secundario" (click)="calificar(2)">
+                                                        <img class="imgIcon" src="../../../assets/cal/infeliz.png" alt="">
+                                                        <span class="badge badge-light">Infeliz</span>
+                                    </button>
+                        </div>
+                        <div class="col-md-2 col-xs-12">
+                            <button type="button" [ngClass]="{ btnSelec : botonesCal.btn3 , btn : !botonesCal.btn3 , btn2 : botonesCal.btn3 }" class="btn texto_secundario" (click)="calificar(3)">
+                                                        <img class="imgIcon" src="../../../assets/cal/confundido.png" alt="">
+                                                        <span class="badge badge-light">Regular</span>
+                                    </button>
+                        </div>
+                        <div class="col-md-2 col-xs-12">
+                            <button type="button" [ngClass]="{ btnSelec : botonesCal.btn4 , btn : !botonesCal.btn4 , btn2 : botonesCal.btn4 }" class="btn texto_secundario" (click)="calificar(4)">
+                                                <img class="imgIcon" src="../../../assets/cal/feliz.png" alt="">
+                                                <span class="badge badge-light">Feliz</span>
+                                    </button>
+                        </div>
+                        <div class="col-md-2 col-xs-12">
+                            <button type="button" [ngClass]="{ btnSelec : botonesCal.btn5 , btn : !botonesCal.btn5 , btn2 : botonesCal.btn5 }" class="btn texto_secundario" (click)="calificar(5)">
+                                                        <img class="imgIcon" src="../../../assets/cal/sonriente.png" alt="">
+                                                        <span class="badge badge-light">Muy Feliz</span>
+                                    </button>
+                        </div>
+                        <div class="col-md-2 col-xs-12">
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary" data-dismiss="modal" (click)="calificacion()">Save changes</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="ComentarioModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Nuevo Comentario</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+            </div>
+            <div class="modal-body">
+                <form [formGroup]="formGroupComentario" id="formGroupComentario" class="row">
+                    <div class="form-group col-12">
+                        <label for="Sentimiento">Sentimeinto</label>
+                        <input class="form-control" formControlName="Sentimiento" name="Sentimiento" id="Sentimiento" type="text">
+                        <div *ngIf="formGroupComentario.controls['Sentimiento'].dirty">
+                            <div class="form-control-feedback text-danger" *ngIf="formGroupComentario.controls['Sentimiento'].errors?.required">
+                                Este campo es necesario para realizar el comentario
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group col-12">
+                        <label for="Comentario">Cometario</label>
+                        <textarea class="form-control" rows="5" formControlName="Comentario" id="Comentario"></textarea>
+                        <div *ngIf="formGroupComentario.controls['Comentario'].dirty">
+                            <div class="form-control-feedback text-danger" *ngIf="formGroupComentario.controls['Comentario'].errors?.required">
+                                El comentario es requerido
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-primary" data-dismiss="modal" (click)="agregarComentario()" [ngClass]="{'disabled':!formGroupComentario.valid}">Send message</button>
+                    </div>
+                </form>
+            </div>
+
+        </div>
+    </div>
+</div>

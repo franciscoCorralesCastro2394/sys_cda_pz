@@ -1,0 +1,7 @@
+{
+    "/firebase_conxion": {
+        "target": "https://pzmybusiness.firebaseio.com/usuarios",
+        "secure": false,
+        "changeOrigin": true
+    }
+}

@@ -1,0 +1,137 @@
+<div class="container register">
+    <div class="row">
+        <div class="col-md-3 register-left">
+            <img src="../../../assets/img/ranita.png" alt="" />
+            <h3>Welcome</h3>
+            <button type="button">Login</button><br/>
+        </div>
+        <div class="col-md-9 register-right">
+            <div class="tab-content" id="myTabContent">
+                <div class="fade show" id="profile" role="tabpanel" *ngIf="selector == 0" aria-labelledby="profile-tab">
+                    <br>
+                    <br>
+                    <div class="main">
+                        <h3>Please Log In, or <a href="#">Sign Up</a></h3>
+                        <div class="row">
+                            <div class="col-xs-6 col-sm-6 col-md-6">
+                                <button class="btn btn-info btn-block" type="button" name="button" (click)="loginFaceBook()">Facebook</button>
+                            </div>
+                            <div class="col-xs-6 col-sm-6 col-md-6">
+                                <button class="btn btn-info btn-block" (click)="loginGoogle()" type="button" name="button"> Google </button>
+                            </div>
+                        </div>
+                        <div class="login-or">
+                            <hr class="hr-or">
+                            <span class="span-or">or</span>
+                        </div>
+                        <form [formGroup]="formGroupLogin" id="formGroupLogin" class="row">
+                            <div class="form-group col-12">
+                                <label for="Identificacion">Email</label>
+                                <input class="form-control" formControlName="Identificacion" name="Identificacion" id="Identificacion" type="text">
+                                <div *ngIf="formGroupLogin.controls['Identificacion'].dirty">
+                                    <div class="form-control-feedback text-danger" *ngIf="formGroupLogin.controls['Identificacion'].errors?.required">
+                                        El Identificacion es requerida
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group col-12">
+                                <label for="Pass">Contraeseña</label>
+                                <input type="password" class="form-control" formControlName="Pass" id="Pass" placeholder="*******">
+                                <div *ngIf="formGroupLogin.controls['Pass'].dirty">
+                                    <div class="form-control-feedback text-danger" *ngIf="formGroupLogin.controls['Pass'].errors?.required">
+                                        El Contraseña es requerida
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                        <button type="submit" class="float-right m-b-5" [ngClass]="{'disabled':!formGroupLogin.valid}" (click)="loginSeguro()">Ingresar</button>
+                    </div>
+                </div>
+                <div class="fade show" id="profile" role="tabpanel" *ngIf="selector != 0" aria-labelledby="profile-tab">
+                    <h3 class="register-heading">Registrar Usario</h3>
+                    <div class="row register-form">
+                        <form [formGroup]="formGroupRegister" id="formGroupRegister" class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="FirstName">First Name</label>
+                                    <input class="form-control" formControlName="FirstName" name="FirstName" id="FirstName" type="text">
+                                    <div *ngIf="formGroupRegister.controls['FirstName'].dirty">
+                                        <div class="form-control-feedback text-danger" *ngIf="formGroupRegister.controls['FirstName'].errors?.required">
+                                            El First Name es requerida
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="LastName">Last Name</label>
+                                    <input class="form-control" formControlName="LastName" name="LastName" id="LastName" type="text">
+                                    <div *ngIf="formGroupRegister.controls['LastName'].dirty">
+                                        <div class="form-control-feedback text-danger" *ngIf="formGroupRegister.controls['LastName'].errors?.required">
+                                            El Last Name es requerida
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="Email">Email</label>
+                                    <input class="form-control" formControlName="Email" name="Email" id="Email" type="text">
+                                    <div *ngIf="formGroupRegister.controls['Email'].dirty">
+                                        <div class="form-control-feedback text-danger" *ngIf="formGroupRegister.controls['Email'].errors?.required">
+                                            El Email es requerida
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="Phone">Phone</label>
+                                    <input class="form-control" formControlName="Phone" name="Phone" id="Phone" type="number">
+                                    <div *ngIf="formGroupRegister.controls['Phone'].dirty">
+                                        <div class="form-control-feedback text-danger" *ngIf="formGroupRegister.controls['Phone'].errors?.required">
+                                            El Phone es requerida
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="pass">pass</label>
+                                    <input class="form-control" formControlName="pass" name="pass" id="pass" type="password">
+                                    <div *ngIf="formGroupRegister.controls['pass'].dirty">
+                                        <div class="form-control-feedback text-danger" *ngIf="formGroupRegister.controls['pass'].errors?.required">
+                                            El password es requerida
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="ConfirmPassword">ConfirmPassword</label>
+                                    <input class="form-control" formControlName="ConfirmPassword" name="ConfirmPassword" id="ConfirmPassword" type="password">
+                                    <div *ngIf="formGroupRegister.controls['ConfirmPassword'].dirty">
+                                        <div class="form-control-feedback text-danger" *ngIf="formGroupRegister.controls['ConfirmPassword'].errors?.required">
+                                            El ConfirmPassword es requerida
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="Imagen">Imagen</label>
+                                    <input class="form-control" formControlName="Imagen" name="Imagen" id="Imagen" type="text">
+                                    <div *ngIf="formGroupRegister.controls['Imagen'].dirty">
+                                        <div class="form-control-feedback text-danger" *ngIf="formGroupRegister.controls['Imagen'].errors?.required">
+                                            El Imagen es requerida
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="Descripcion">Descripcion</label>
+                                    <input class="form-control" formControlName="Descripcion" name="Descripcion" id="Descripcion" type="text">
+                                    <div *ngIf="formGroupRegister.controls['Descripcion'].dirty">
+                                        <div class="form-control-feedback text-danger" *ngIf="formGroupRegister.controls['Descripcion'].errors?.required">
+                                            El Descripcion es requerida
+                                        </div>
+                                    </div>
+                                </div>
+                                <button type="submit" (click)="registrar()" class="btnRegister">Register </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

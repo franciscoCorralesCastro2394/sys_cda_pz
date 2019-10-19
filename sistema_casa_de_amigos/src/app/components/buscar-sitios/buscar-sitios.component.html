@@ -1,0 +1,39 @@
+<section id="team" class="pb-5">
+    <div class="container">
+        <br>
+        <h5 class="section-title h1">Resultados de Sitios Buscados </h5>
+        <div class="row">
+            <div class="col-md-10">
+                <input class="mr-sm-2" type="text" placeholder="Buscar Sitio" (keyup.enter)="buscarSitio(buscarTexto.value)" #buscarTexto>
+                <button (click)="buscarSitio(buscarTexto.value)" class="btn texto_secundario my-2 my-sm-0" type="button">Buscar</button>
+            </div>
+        </div>
+        <div class="row">
+            <div *ngIf="sitios$">
+                <div class="col-xs-12 col-sm-6 col-md-4" *ngFor="let sitio of (sitios$ | async)">
+                    <br>
+                    <div class="image-flip" ontouchstart="this.classList.toggle('hover');">
+                        <div class="mainflip">
+                            <div class="frontside">
+                                <div class="card">
+                                    <div class="card-body text-center">
+                                        <p><img class="img-fluid" [src]="sitio.imgs[0]" alt="card image"></p>
+                                        <h4 class="card-title">{{sitio.nombre}}</h4>
+                                        <p class="card-text">{{sitio.descripcion.substr(0,100)}}...</p>
+                                        <button (click)="verMas(sitio.id)" class="btn texto_secundario btn-sm"><i class="fa fa-plus"> Leer mas</i></button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="alert alert-warning" role="alert" *ngIf="!sitios$">
+                <h4 class="alert-heading">No existen sitios con ese nombre</h4>
+                <p>Aww yeah, you successfully read this important alert message. This example text is going to run a bit longer so that you can see how spacing within an alert works with this kind of content.</p>
+                <hr>
+                <p class="mb-0">Whenever you need to, be sure to use margin utilities to keep things nice and tidy.</p>
+            </div>
+        </div>
+    </div>
+</section>

@@ -1,0 +1,47 @@
+<section id="team" class="pb-5">
+    <div class="container">
+        <br>
+        <h5 class="section-title h1">Sitios Turisticos</h5>
+        <div class="row">
+            <div class="col-md-10">
+                <input class="mr-sm-2" type="text" placeholder="Buscar Sitio" (keyup.enter)="buscarSitio(buscarTexto.value)" #buscarTexto>
+                <button (click)="buscarSitio(buscarTexto.value)" class="btn texto_secundario my-2 my-sm-0" type="button">Buscar</button>
+            </div>
+            <div class="col-md-2">
+                <button (click)="nuevoSitio()" class="btn texto_secundario my-2 my-sm-0" type="button">Ingresar Sitio</button>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-12 col-sm-6 col-md-4" *ngFor="let sitio of sitios">
+                <br>
+                <div class="image-flip" ontouchstart="this.classList.toggle('hover');">
+                    <div class="mainflip">
+                        <div class="frontside">
+                            <div class="card">
+                                <div class="card-body text-center">
+                                    <p><img class="img-fluid" [src]="sitio.imgs[0]" alt="card image"></p>
+                                    <h4 class="card-title">{{sitio.nombre}}</h4>
+                                    <p class="card-text">{{sitio.descripcion.substr(0,100)}}...</p>
+                                    <a class="btn texto_secundario btn-sm"><i class="fa fa-plus" (click)="vermas(sitio.id)"> Leer mas</i></a>
+                                    <button (click)="editarSitio(sitio)" *ngIf="userLogin == sitio.Editor" type="button" class="btn btn-outline-info">
+                                            Editar Sitio
+                                            <i class="fa fa-cut"></i>
+                                            </button>
+                                    <button type="button" class="btn texto_secundario" (click)="seguirSitio(sitio)"> 
+                                        Seguir Sitio
+                                        <i class="fa fa-heart"></i>
+                                    </button>
+
+                                    <button (click)="elininarSitio(sitio)" *ngIf="userAdmin" type="button" class="btn btn-outline-danger">
+                                        Eliminar Sitio
+                                        <i class="fas fa-trash"></i>
+                                        </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

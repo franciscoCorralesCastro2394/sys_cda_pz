@@ -1,0 +1,148 @@
+<br>
+<br>
+<br>
+<div class="container" *ngIf="userLogin">
+    <div class="d-flex justify-content-center h-100">
+        <div class="image_outer_container">
+            <div class="img_icon"></div>
+            <div class="image_inner_container">
+                <img [src]="userLogin.Imagen">
+            </div>
+        </div>
+    </div>
+</div>
+<section id="team" class="pb-5">
+    <div class="container">
+        <h5 class="section-title h1" *ngIf="nombre"> {{nombre}} </h5>
+        <div class="row">
+            <div class="col-xs-12 col-sm-6 col-md-4" *ngIf="userLogin">
+            </div>
+        </div>
+    </div>
+</section>
+<!-- <section id="team" class="pb-5" *ngIf="sitiosS">
+    <div class="container">
+        <h5 class="section-title h1"> Sitios Seguidos </h5>
+        <div class="row">
+            <div class="col-xs-12 col-sm-6 col-md-4" *ngFor="let sitio of sitiosS">
+                <div class="image-flip" ontouchstart="this.classList.toggle('hover');">
+                    <div class="mainflip">
+                        <div class="frontside">
+                            <div class="card">
+                                <div class="card-body text-center">
+                                    <p><img class="img-fluid" [src]="sitio.imgs[0]" alt="card image"></p>
+                                    <h4 class="card-title">{{sitio.nombre}}</h4>
+                                    <p class="card-text">{{sitio.descripcion}}</p>
+                                    <a href="#" class="btn btn-primary btn-sm"><i class="fa fa-plus"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="backside">
+                            <div class="card">
+                                <div class="card-body text-center mt-4">
+                                    <h4 class="card-title">{{sitio.nombre}}</h4>
+                                    <p class="card-text">{{sitio.descripcion}}</p>
+                                    <ul class="list-inline">
+                                        <li class="list-inline-item">
+                                            <a class="social-icon text-xs-center" target="_blank" href="#">
+                                                <i class="fa fa-facebook"></i>
+                                            </a>
+                                        </li>
+                                        <li class="list-inline-item">
+                                            <a class="social-icon text-xs-center" target="_blank" href="#">
+                                                <i class="fa fa-twitter"></i>
+                                            </a>
+                                        </li>
+                                        <li class="list-inline-item">
+                                            <a class="social-icon text-xs-center" target="_blank" href="#">
+                                                <i class="fa fa-skype"></i>
+                                            </a>
+                                        </li>
+                                        <li class="list-inline-item">
+                                            <a class="social-icon text-xs-center" target="_blank" href="#">
+                                                <i class="fa fa-google"></i>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<section id="team" class="pb-5" *ngIf="resenas">
+    <div class="container">
+        <h5 class="section-title h1"> Reseñas </h5>
+        <div class="row">
+            <div class="col-xs-12 col-sm-6 col-md-4" *ngFor="let resena of resenas">
+                <div class="block-text rel zmin">
+                    <a title="" href="#">{{resena.nombreSitio}}</a>
+                    <div class="mark">Sentimineto : {{ resena.sentimeinto }}
+                        <span class="rating-input">
+                        </span>
+                    </div>
+                    <div class="container">
+                        <p class="">{{resena.comentario}}</p>
+                    </div>
+                    <ins class="ab zmin sprite block"></ins>
+
+                    <div class="container">
+
+                        <br>
+                        <div class="panel-body">
+
+                            <ul class="media-list" *ngIf="resena.respuestas">
+                                <br>
+                                <li class="media" *ngFor="let res of resena.respuestas">
+                                    <div class="media-left">
+                                    </div>
+                                    <div class="media-body">
+                                        <h4 class="media-heading">
+                                            Por {{res.idUsuario}}
+                                            <br>
+                                            <small>
+                                                            Comentado en :  {{resena.nombreSitio}}
+                                                </small>
+                                        </h4>
+                                        <p>
+                                            {{res.respuesta}}
+                                        </p>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="person-text rel">
+                    <p> from {{resena.idUsuario | uppercase}}</p>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</section>
+<section id="team" class="pb-5" *ngIf="calificaciones">
+    <div class="container">
+        <h5 class="section-title h1"> Valoraciones </h5>
+        <div class="row">
+            <div class="col-xs-12 col-sm-6 col-md-4" *ngFor="let val of calificaciones">
+                <div class="block-text rel zmin imgC">
+                    <div class="mark">Evaluación:
+                        <span class="rating-input">
+                            {{val.numCalificacion}}
+                        </span>
+                    </div>
+                    <div class="card">
+                        <div class="card-body text-center">
+                            <p><img class="img-fluid" [src]="val.img" alt="card image"></p>
+                            <h4 class="card-title">{{val.nombreSitio}}</h4>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section> -->

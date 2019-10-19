@@ -1,0 +1,25 @@
+<carousel *ngIf="noticias$">
+    <div *ngFor="let noti of (noticias$ | async); let i=index">
+        <slide>
+            <img [src]="noti.Imagen" alt="first slide" style="display: block; width: 100%; height: 100%;">
+            <div class="carousel-caption d-md-block">
+                <!-- <h3>{{noti.Titulo}}</h3>
+                <div class="container">
+                    <p>
+                        {{noti.Descripcion}}
+                    </p>
+                </div> -->
+                <!-- <button (click)="editarNoticia(noti)" type="button" class="btn btn-outline-info">
+                Editar Noticia
+                <i class="fa fa-cut"></i>
+                </button> -->
+            </div>
+        </slide>
+    </div>
+</carousel>
+<div class="alert alert-warning" role="alert" *ngIf="!noticias$">
+    <h4 class="alert-heading">No existen noticias </h4>
+    <p>Aww yeah, you successfully read this important alert message. This example text is going to run a bit longer so that you can see how spacing within an alert works with this kind of content.</p>
+    <hr>
+    <p class="mb-0">Whenever you need to, be sure to use margin utilities to keep things nice and tidy.</p>
+</div>
