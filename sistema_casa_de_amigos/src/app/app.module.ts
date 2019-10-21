@@ -34,6 +34,7 @@ import { AngularFireAuthModule } from '@angular/fire/auth';
 import { PrivateComponent } from './components/private/private.component';
 import { UsuariosComponent } from './components/usuarios/usuarios.component';
 import { Router, RouterModule } from '@angular/router';
+import { FormsComponent } from './componetsFeedback/forms/forms.component';
 
 
 @NgModule({
@@ -55,7 +56,8 @@ import { Router, RouterModule } from '@angular/router';
     EditSitioComponent,
     SitioSeguidoComponent,
     PrivateComponent,
-    UsuariosComponent, 
+    UsuariosComponent,
+    FormsComponent, 
   ],
   imports: [
     BrowserModule,
