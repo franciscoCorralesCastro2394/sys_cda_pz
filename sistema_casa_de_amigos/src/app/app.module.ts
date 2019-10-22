@@ -35,6 +35,7 @@ import { PrivateComponent } from './components/private/private.component';
 import { UsuariosComponent } from './components/usuarios/usuarios.component';
 import { Router, RouterModule } from '@angular/router';
 import { FormsComponent } from './componetsFeedback/forms/forms.component';
+import { CampsComponent } from './componetsFeedback/camps/camps.component';
 
 
 @NgModule({
@@ -57,7 +58,8 @@ import { FormsComponent } from './componetsFeedback/forms/forms.component';
     SitioSeguidoComponent,
     PrivateComponent,
     UsuariosComponent,
-    FormsComponent, 
+    FormsComponent,
+    CampsComponent, 
   ],
   imports: [
     BrowserModule,

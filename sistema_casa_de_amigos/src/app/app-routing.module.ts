@@ -17,6 +17,7 @@ import { SitioSeguidoComponent } from '../app/components/sitio-seguido/sitio-seg
 import { AuthenticationGuard } from '../app/guards/authentication/authentication.guard'; 
 import { AuthorizationGuard } from '../app/guards/authorization/authorization.guard'; 
 import { FormsComponent } from '../app/componetsFeedback/forms/forms.component';
+import { CampsComponent } from './componetsFeedback/camps/camps.component';
 
 
 const routes: Routes = [
@@ -26,6 +27,7 @@ const routes: Routes = [
   { path: 'lista-noticias', component: NoticiasListComponent },
   { path: 'inicio', component: NoticiasListComponent },
   { path: 'formularios', component: FormsComponent},
+  { path: 'campamentos', component: CampsComponent},
   { path: 'login/:selector', component: LoginComponent},
   { path: 'loginIngresar/:selector', component: LoginComponent},
   { path: 'lista-sitios', component: SitiosListComponent},
