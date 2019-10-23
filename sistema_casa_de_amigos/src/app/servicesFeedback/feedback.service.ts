@@ -38,6 +38,15 @@ export class FeedbackService {
   
 
 
+  insertCamp(data:campFeedback): Observable<campFeedback>{
+    return this.http.post<campFeedback>(this.urlApiFormsFeedback + 'Campamentos/insertCampamentos',data);
+  }
+
+
+  editForm(data:any): Observable<formFeedBack>{
+    return this.http.post<formFeedBack>(this.urlApiFormsFeedback + 'Formularios/updateFormularios',data);
+  }
+
 
 
 

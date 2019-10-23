@@ -19,7 +19,7 @@ export interface coordByForm {
 
 export interface campFeedback {
 
-    id_camp_group: number;
+    id_camp_group?: number;
     camp_mane: string;
     date_ini: string;
     date_end: string;
