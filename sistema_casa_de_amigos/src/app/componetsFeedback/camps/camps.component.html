@@ -10,7 +10,7 @@
         <span class="fa fa-plus-square-o"></span>
     </button>
     </div>
-    <table class="table">
+    <table class="table  table-hover">
         <tr>
             <th>ID</th>
             <th>Campamento</th>
@@ -19,7 +19,10 @@
             <th>Editar</th>
             <th>Eliminar</th>
         </tr>
-        <tr *ngFor="let camp of (camps$  | async)">
+        <tr *ngFor="let camp of (camps$  | async)"
+        data-toggle="tooltip" data-placement="top" 
+            title="Doble Click para ver detalles"
+            (dblclick)="verDetalle(camp)" >
             <td>{{camp.id_camp_group}}</td>
             <td>{{camp.camp_mane}}</td>
             <td>{{camp.date_ini}}</td>

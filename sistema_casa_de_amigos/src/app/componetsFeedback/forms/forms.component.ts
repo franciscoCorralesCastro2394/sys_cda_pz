@@ -6,6 +6,8 @@ import { DatePipe } from '@angular/common';
 import swal from 'sweetalert'; 
 import { DataStorageService } from 'src/app/services/data-storage.service';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import {Router} from '@angular/router';
+
 
 @Component({
   selector: 'app-forms',
@@ -16,9 +18,11 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 export class FormsComponent implements OnInit {
 
   private idInserted = 0; 
-  constructor(private forms: FeedbackService,private datePipe: DatePipe,
+  constructor(private forms: FeedbackService,
+              private datePipe: DatePipe,
               private dataStorageService:DataStorageService,
-              private formBuilder:FormBuilder  ) { }
+              private formBuilder:FormBuilder,
+              private router:Router  ) { }
    forms$ : Observable<formFeedBack[]>; 
    private user:string;
    private formGroupRegisterForm: FormGroup;
@@ -97,6 +101,11 @@ export class FormsComponent implements OnInit {
     this.formGroupRegisterForm = this.formBuilder.group({
       form_name: ['', [Validators.required]]
     });
+  }
+
+
+  verDetalle(data:formFeedBack){
+    this.router.navigate(['view-details-form',data.id_form_feedback]);
   }
 
 }

@@ -49,5 +49,9 @@ export class FeedbackService {
 
 
 
+  getFormsById(id:number): Observable<formFeedBack>{
+    return this.http.get<formFeedBack>(this.urlApiFormsFeedback + 'Formularios/getFormularios/'+id);
+  }
+
 
 }

@@ -77,6 +77,12 @@ export class CampsComponent implements OnInit {
             swal("Error", "Formulario con errores", "error");
             }
      }
+
+
+     verDetalle(data:campFeedback){
+
+      console.log(data);
+     }
   
 
 }

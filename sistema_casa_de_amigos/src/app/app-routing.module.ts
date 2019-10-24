@@ -18,6 +18,7 @@ import { AuthenticationGuard } from '../app/guards/authentication/authentication
 import { AuthorizationGuard } from '../app/guards/authorization/authorization.guard'; 
 import { FormsComponent } from '../app/componetsFeedback/forms/forms.component';
 import { CampsComponent } from './componetsFeedback/camps/camps.component';
+import { ViewDetailsFormComponent } from './componetsFeedback/view-details-form/view-details-form.component';
 
 
 const routes: Routes = [
@@ -27,6 +28,7 @@ const routes: Routes = [
   { path: 'lista-noticias', component: NoticiasListComponent },
   { path: 'inicio', component: NoticiasListComponent },
   { path: 'formularios', component: FormsComponent},
+  { path: 'view-details-form/:id', component: ViewDetailsFormComponent},
   { path: 'campamentos', component: CampsComponent},
   { path: 'login/:selector', component: LoginComponent},
   { path: 'loginIngresar/:selector', component: LoginComponent},
