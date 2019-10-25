@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { FeedbackService } from '../../servicesFeedback/feedback.service';
-import { formFeedBack } from '../../interfaces/feedbackInterfaces';
+import { questFeedback,questType } from '../../interfaces/feedbackInterfaces';
 import { Observable } from 'rxjs';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+
 
 
 @Component({
@@ -15,20 +17,41 @@ import { Observable } from 'rxjs';
 export class ViewDetailsFormComponent implements OnInit {
   formId:number; 
   formName:string;
+  questions$ : Observable<questFeedback[]>; 
+  typeQuest$ :  Observable<questType[]>;  
+  private formGroupRegisterQuest: FormGroup;
   constructor(private activatedRoute:ActivatedRoute,
-              private forms: FeedbackService) { }
+              private quest: FeedbackService,
+              private formBuilder:FormBuilder) { }
 
  
 
   ngOnInit() {
    this.formId = this.activatedRoute.snapshot.params['id'];
+   this.questions$
    this.getForm();
+   this.getQuestbyForm();
+   this.iniciarRegisterQuest();
   }
 
   getForm(){
-   this.forms.getFormsById(this.formId).subscribe(data => {
+   this.quest.getFormsById(this.formId).subscribe(data => {
    this.formName = data.form_name;
    });
+   this.typeQuest$ = this.quest.getTypeQuest();
+   console.log(this.typeQuest$)
+  }
+
+
+  getQuestbyForm(){
+    this.questions$ = this.quest.getQuesByForm(this.formId);
+  }
+
+  iniciarRegisterQuest = () => {
+    this.formGroupRegisterQuest = this.formBuilder.group({
+      id_type_quest: ['', [Validators.required]],
+      question_feedback: ['', [Validators.required]]
+    });
   }
 
 }

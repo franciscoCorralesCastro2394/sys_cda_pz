@@ -27,3 +27,18 @@ export interface campFeedback {
     id_coordinator: string;
 
 } 
+
+export interface questFeedback {
+
+    id_quest_feedback?: number;
+    id_type_quest: number;
+    question_feedback: string;
+    date_update: string;
+    type_cues?:string;
+
+}
+
+export interface questType {
+    id_type_cues:number;
+    type_cues:string;
+}

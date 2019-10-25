@@ -8,4 +8,97 @@
  <h1 *ngIf="formName">
   Formulario:  {{formName}}
  </h1>
+
+ <br>
+ <div class="float-right">
+    <button type="button" 
+    class="btn btn-outline-info btn-xs"
+    data-toggle="modal" data-target="#ModalNewQuest"
+    > Nueva Pregunta 
+    <span class="fa fa-plus-square-o"></span>
+</button>
+<br>
 </div>
+
+<table class="table table-hover">
+    <tr>
+        <th>ID</th>
+        <th>Pregunta</th>
+        <th>Tipo</th>
+        <th>Editar</th>
+        <th>Eliminar</th>
+    </tr>
+    <tr *ngFor="let quest of (questions$  | async)">
+        <td>{{quest.id_quest_feedback}}</td>
+        <td>{{quest.question_feedback}}</td>
+        <td>{{quest.type_cues}}</td>
+        <td>
+            <div>
+                <button type="button" class="btn btn-outline-info btn-xs"
+                (click)="editarQuest()">
+              <!-- data-toggle="modal" data-target="#ModalEditForm" -->
+                <span class="fa fa-save"></span>
+            </button>
+            </div>
+        </td>
+        <td>
+            <div>
+                <button type="button" class="btn btn-outline-danger btn-xs">
+                <span class="fas fa-trash"></span>
+            </button>
+            </div>
+        </td>
+    </tr>
+</table>
+
+</div>
+
+
+
+
+<!-- Modal -->
+<div class="modal fade" id="ModalNewQuest" tabindex="-1" role="dialog" 
+   aria-labelledby="ModalNewFormTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLongTitle">Registrar Pregunta</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+              <form [formGroup]="formGroupRegisterQuest" id="formGroupRegisterQuest">
+                      <div class="form-group">
+                          <label for="question_feedback">Pregunta</label>
+                          <input class="form-control" formControlName="question_feedback" name="question_feedback" id="question_feedback" type="text">
+                          <div *ngIf="formGroupRegisterQuest.controls['question_feedback'].dirty">
+                              <div class="form-control-feedback text-danger" *ngIf="formGroupRegisterQuest.controls['question_feedback'].errors?.required">
+                                  El nombre del Campamento es requerido
+                              </div>
+                          </div>
+                      </div>
+                      <div class="form-group">
+                          
+                          <label for="id_type_quest">Tipo de pregunta</label>
+                          <select class="form-control" formControlName="id_type_quest" name="id_type_quest" id="id_type_quest">
+                            <option *ngFor="let types of (typeQuest$  | async)" [value]="types.id_type_cues">
+                              {{types.type_cues}}
+                            </option>
+                          </select>
+                          <div *ngIf="formGroupRegisterQuest.controls['id_type_quest'].dirty">
+                              <div class="form-control-feedback text-danger" *ngIf="formGroupRegisterQuest.controls['id_type_quest'].errors?.required">
+                                  El Fecha de Inicio es requerida
+                              </div>
+                          </div>
+                      </div>
+              </form>
+          
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+          <button type="button" data-dismiss="modal" class="btn btn-primary" (click)="nuevoCamp()" >Guardar Formulario </button>
+        </div>
+      </div>
+    </div>
+  </div>

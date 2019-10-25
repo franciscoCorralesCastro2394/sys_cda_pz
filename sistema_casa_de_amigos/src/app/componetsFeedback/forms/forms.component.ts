@@ -70,13 +70,13 @@ export class FormsComponent implements OnInit {
 
   }
 
-  EditForm(){
+  EditForm(){//editar formulario
     let data = new FormData();
     data.append('form_name',this.formGroupRegisterForm.value.form_name);
     data.append('form_update',this.datePipe.transform(Date.now(), 'yyyy-MM-dd'));
     data.append('id_form_feedback',this.editedForm.id_form_feedback.toString()); 
 
-    this.forms.editForm(data).subscribe(responce => {//inseratr la relacion formulario por Coordinador
+    this.forms.editForm(data).subscribe(responce => {
       if(responce){
         console.log(responce)
         this.getForms();

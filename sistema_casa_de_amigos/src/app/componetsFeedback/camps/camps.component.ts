@@ -16,14 +16,14 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 })
 export class CampsComponent implements OnInit {
 
-   private idInserted = 0; 
+  private idInserted = 0; 
   constructor(private camps: FeedbackService,
               private datePipe: DatePipe,
               private dataStorageService:DataStorageService,
               private formBuilder:FormBuilder ) { }
    camps$ : Observable<campFeedback[]>; 
    private user:string;
-   formGroupRegisterCamp: FormGroup;
+   private formGroupRegisterCamp: FormGroup;
 
   ngOnInit() {
     this.getCamps();
