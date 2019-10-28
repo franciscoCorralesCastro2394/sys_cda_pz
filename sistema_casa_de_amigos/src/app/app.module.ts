@@ -37,6 +37,7 @@ import { Router, RouterModule } from '@angular/router';
 import { FormsComponent } from './componetsFeedback/forms/forms.component';
 import { CampsComponent } from './componetsFeedback/camps/camps.component';
 import { ViewDetailsFormComponent } from './componetsFeedback/view-details-form/view-details-form.component';
+import { ViewCampComponetComponent } from './componetsFeedback/view-camp-componet/view-camp-componet.component';
 
 
 @NgModule({
@@ -61,7 +62,9 @@ import { ViewDetailsFormComponent } from './componetsFeedback/view-details-form/
     UsuariosComponent,
     FormsComponent,
     CampsComponent,
-    ViewDetailsFormComponent, 
+    ViewDetailsFormComponent,
+    ViewFormComponetComponent,
+    ViewCampComponetComponent, 
   ],
   imports: [
     BrowserModule,

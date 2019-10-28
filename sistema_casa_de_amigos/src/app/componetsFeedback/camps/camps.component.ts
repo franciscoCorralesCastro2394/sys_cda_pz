@@ -37,12 +37,6 @@ export class CampsComponent implements OnInit {
   }
 
 
-  ver(){
-
-    console.log(123);
-  }
-
-
   iniciarRegisterCamp = () => {
     this.formGroupRegisterCamp = this.formBuilder.group({
       camp_mane: ['', [Validators.required]],

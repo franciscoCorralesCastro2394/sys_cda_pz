@@ -90,7 +90,6 @@ export class FormsComponent implements OnInit {
   }
 
   editarForm(form:formFeedBack){//pasa el valor al formuario del modal para poder editar
-    debugger
     this.editedForm = form;
     this.formGroupRegisterForm.patchValue({
       form_name: form.form_name

@@ -63,4 +63,18 @@ export class FeedbackService {
     return this.http.get<questType[]>(this.urlApiFormsFeedback + 'TipoPregunta/getTipoPregunta');
   }
 
+
+  insertQuest(data:any): Observable<any>{//metodo para insertar un Preguntas
+    return this.http.post<any>(this.urlApiFormsFeedback + 'Preguntas/insertPreguntas/',data);
+  }
+
+
+  insertQuestByForm(data:any): Observable<any>{//metodo para insertar un Preguntas por formulario 
+    return this.http.post<any>(this.urlApiFormsFeedback + 'FormPorPregunta/insertFormPorPregunta',data);
+  }
+
+  editQuest(data:any){
+    return this.http.post<any>(this.urlApiFormsFeedback + 'Preguntas/updatePreguntas',data);
+  }
+
 }

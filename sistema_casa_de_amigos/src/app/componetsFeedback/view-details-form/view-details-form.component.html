@@ -12,6 +12,7 @@
  <br>
  <div class="float-right">
     <button type="button" 
+   (click) = "controEditarGuardar(1)"
     class="btn btn-outline-info btn-xs"
     data-toggle="modal" data-target="#ModalNewQuest"
     > Nueva Pregunta 
@@ -35,8 +36,9 @@
         <td>
             <div>
                 <button type="button" class="btn btn-outline-info btn-xs"
-                (click)="editarQuest()">
-              <!-- data-toggle="modal" data-target="#ModalEditForm" -->
+                (click)="editarQuest(quest)"
+                data-toggle="modal" data-target="#ModalNewQuest"
+                >
                 <span class="fa fa-save"></span>
             </button>
             </div>
@@ -71,8 +73,9 @@
               <form [formGroup]="formGroupRegisterQuest" id="formGroupRegisterQuest">
                       <div class="form-group">
                           <label for="question_feedback">Pregunta</label>
-                          <input class="form-control" formControlName="question_feedback" name="question_feedback" id="question_feedback" type="text">
-                          <div *ngIf="formGroupRegisterQuest.controls['question_feedback'].dirty">
+                          <textarea rows="4" class="form-control" formControlName="question_feedback" name="question_feedback" id="question_feedback" type="text">
+                          </textarea>
+                            <div *ngIf="formGroupRegisterQuest.controls['question_feedback'].dirty">
                               <div class="form-control-feedback text-danger" *ngIf="formGroupRegisterQuest.controls['question_feedback'].errors?.required">
                                   El nombre del Campamento es requerido
                               </div>
@@ -97,8 +100,11 @@
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-          <button type="button" data-dismiss="modal" class="btn btn-primary" (click)="nuevoCamp()" >Guardar Formulario </button>
+          <button type="button" data-dismiss="modal" class="btn btn-primary" (click)="mantenimientoQuest()" >Guardar Formulario </button>
         </div>
       </div>
     </div>
   </div>
+
+
+
