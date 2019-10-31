@@ -22,7 +22,7 @@
         <tr *ngFor="let camp of (camps$  | async)"
         data-toggle="tooltip" data-placement="top" 
             title="Doble Click para ver detalles"
-            (dblclick)="verDetalle(camp)" >
+            (dblclick)="verDetalle(camp)">
             <td>{{camp.id_camp_group}}</td>
             <td>{{camp.camp_mane}}</td>
             <td>{{camp.date_ini}}</td>

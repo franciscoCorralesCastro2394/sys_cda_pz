@@ -42,3 +42,10 @@ export interface questType {
     id_type_cues:number;
     type_cues:string;
 }
+
+export interface camByVoluntInsert{
+    id_camp_by_volt?:number;
+    id_camp:number;
+    id_voluntier:number;
+
+}

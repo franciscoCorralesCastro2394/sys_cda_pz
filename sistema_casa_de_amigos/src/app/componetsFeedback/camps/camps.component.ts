@@ -6,6 +6,7 @@ import { DatePipe } from '@angular/common';
 import swal from 'sweetalert'; 
 import { DataStorageService } from 'src/app/services/data-storage.service';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import {Router} from '@angular/router';
 
 
 @Component({
@@ -20,7 +21,8 @@ export class CampsComponent implements OnInit {
   constructor(private camps: FeedbackService,
               private datePipe: DatePipe,
               private dataStorageService:DataStorageService,
-              private formBuilder:FormBuilder ) { }
+              private formBuilder:FormBuilder,
+              private router:Router) { }
    camps$ : Observable<campFeedback[]>; 
    private user:string;
    private formGroupRegisterCamp: FormGroup;
@@ -73,10 +75,8 @@ export class CampsComponent implements OnInit {
      }
 
 
-     verDetalle(data:campFeedback){
-
-      console.log(data);
-     }
-  
+  verDetalle(data:campFeedback){
+      this.router.navigate(['view-details-camp',data.id_camp_group]);
+    }
 
 }

@@ -63,7 +63,6 @@ import { ViewCampComponetComponent } from './componetsFeedback/view-camp-compone
     FormsComponent,
     CampsComponent,
     ViewDetailsFormComponent,
-    ViewFormComponetComponent,
     ViewCampComponetComponent, 
   ],
   imports: [
@@ -78,7 +77,7 @@ import { ViewCampComponetComponent } from './componetsFeedback/view-camp-compone
     AngularFireModule.initializeApp(environment.fireBase),
     AngularFirestoreModule,
     AngularFireAuthModule
-    // RouterModule.forRoot(routes,{scrollPositionRestoration:'enabled'})
+    //RouterModule.forRoot(routes,{scrollPositionRestoration:'enabled'})
   ],
   providers: [ DatePipe,DataStorageService],
   bootstrap: [AppComponent]

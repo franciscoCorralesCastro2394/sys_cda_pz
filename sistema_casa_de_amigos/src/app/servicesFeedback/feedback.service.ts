@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { formFeedBack,coordByForm,campFeedback,questFeedback,questType} from '../interfaces/feedbackInterfaces';
+import { formFeedBack,coordByForm,campFeedback,questFeedback,questType,camByVoluntInsert} from '../interfaces/feedbackInterfaces';
 import { Observable } from 'rxjs';
 
 @Injectable(
@@ -56,7 +56,7 @@ export class FeedbackService {
 
   getQuesByForm(id:number): Observable<questFeedback[]>{//metodo pra obtener las preguntas por formulario 
     return this.http.get<questFeedback[]>(this.urlApiFormsFeedback + 'Preguntas/getPreguntasPorForm/'+id);
-  }TipoPregunta
+  }
 
 
   getTypeQuest(): Observable<questType[]>{//metodo pra obtener los tipos de preguntas
@@ -77,4 +77,18 @@ export class FeedbackService {
     return this.http.post<any>(this.urlApiFormsFeedback + 'Preguntas/updatePreguntas',data);
   }
 
+
+  getCampById(id:number): Observable<campFeedback>{//metodo para obtener el camp por id 
+    return this.http.get<campFeedback>(this.urlApiFormsFeedback + 'Campamentos/getCampamentos/'+id);
+  }
+
+
+  insertVoluntierByCamp(data:camByVoluntInsert): Observable<camByVoluntInsert>{//metodo para insertar un Preguntas por formulario 
+    return this.http.post<camByVoluntInsert>(this.urlApiFormsFeedback + 'CampamentoPorVoluntario/insertCampamentoPorVoluntario',data);
+  }
+
+
+  getVoluntPorCamp(idCamp:number): Observable<camByVoluntInsert[]>{//metodo pra obtener los tipos de preguntas
+    return this.http.get<camByVoluntInsert[]>(this.urlApiFormsFeedback + 'CampamentoPorVoluntario/getVoluntPorCamp/'+idCamp);
+  }
 }

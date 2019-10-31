@@ -1,0 +1,11 @@
+
+
+#bordeLeft{
+    border-left-style: solid;
+     border-left-color: black;
+}
+
+#bordeRight{
+    border-left-style: solid;
+     border-right-color: black;
+}

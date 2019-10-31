@@ -7,7 +7,7 @@ import swal from 'sweetalert';
 import { DataStorageService } from 'src/app/services/data-storage.service';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import {Router} from '@angular/router';
-
+import { PageChangedEvent } from 'ngx-bootstrap/pagination';
 
 @Component({
   selector: 'app-forms',

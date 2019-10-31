@@ -19,7 +19,7 @@ import { AuthorizationGuard } from '../app/guards/authorization/authorization.gu
 import { FormsComponent } from '../app/componetsFeedback/forms/forms.component';
 import { CampsComponent } from './componetsFeedback/camps/camps.component';
 import { ViewDetailsFormComponent } from './componetsFeedback/view-details-form/view-details-form.component';
-
+import { ViewCampComponetComponent } from './componetsFeedback/view-camp-componet/view-camp-componet.component';
 
 const routes: Routes = [
   { path: 'acerca-de', component: AcercaDeComponent },
@@ -29,6 +29,7 @@ const routes: Routes = [
   { path: 'inicio', component: NoticiasListComponent },
   { path: 'formularios', component: FormsComponent},
   { path: 'view-details-form/:id', component: ViewDetailsFormComponent},
+  { path: 'view-details-camp/:id', component: ViewCampComponetComponent},
   { path: 'campamentos', component: CampsComponent},
   { path: 'login/:selector', component: LoginComponent},
   { path: 'loginIngresar/:selector', component: LoginComponent},

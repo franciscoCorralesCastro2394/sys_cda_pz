@@ -101,7 +101,6 @@ export class ViewDetailsFormComponent implements OnInit {
    this.formName = data.form_name;
    });
    this.typeQuest$ = this.quest.getTypeQuest();
-   console.log(this.typeQuest$)
   }
 
 
