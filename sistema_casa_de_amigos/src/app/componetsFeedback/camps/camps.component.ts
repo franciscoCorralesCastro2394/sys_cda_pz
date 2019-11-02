@@ -55,7 +55,8 @@ export class CampsComponent implements OnInit {
          date_end : this.formGroupRegisterCamp.value.date_end,
          date_ini : this.formGroupRegisterCamp.value.date_ini,
          id_coordinator :   this.user,
-         update_date : this.datePipe.transform(Date.now(), 'yyyy-MM-dd')
+         update_date : this.datePipe.transform(Date.now(), 'yyyy-MM-dd'),
+         state_camp : 1
        }
        this.camps.insertCamp(Newcamp).subscribe(res => {
           console.log(res);

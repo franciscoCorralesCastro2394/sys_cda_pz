@@ -25,6 +25,7 @@ export interface campFeedback {
     date_end: string;
     update_date: string;
     id_coordinator: string;
+    state_camp:number;
 
 } 
 
@@ -46,6 +47,6 @@ export interface questType {
 export interface camByVoluntInsert{
     id_camp_by_volt?:number;
     id_camp:number;
-    id_voluntier:number;
+    id_voluntier:string;
 
 }

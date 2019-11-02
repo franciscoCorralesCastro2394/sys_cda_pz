@@ -91,4 +91,9 @@ export class FeedbackService {
   getVoluntPorCamp(idCamp:number): Observable<camByVoluntInsert[]>{//metodo pra obtener los tipos de preguntas
     return this.http.get<camByVoluntInsert[]>(this.urlApiFormsFeedback + 'CampamentoPorVoluntario/getVoluntPorCamp/'+idCamp);
   }
+
+
+  deleteVoluntPorCamp(id:number): Observable<string>{//metodo pra obtener los tipos de preguntas
+    return this.http.get<string>(this.urlApiFormsFeedback + 'CampamentoPorVoluntario/deleteCampamentoPorVoluntario/'+id);
+  }
 }

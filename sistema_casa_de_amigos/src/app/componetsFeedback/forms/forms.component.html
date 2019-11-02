@@ -16,7 +16,9 @@
             <th>Formulario</th>
             <th>Fecha</th>
             <th>Editar</th>
-            <th>Eliminar</th>
+            <th>Eliminar</th>	
+            <th>Aplicar Formulario</th>
+
         </tr>
         <tr *ngFor="let form of (forms$  | async)"
         data-toggle="tooltip" data-placement="top" 
@@ -38,6 +40,13 @@
                 <div>
                     <button type="button" class="btn btn-outline-danger btn-xs">
                     <span class="fas fa-trash"></span>
+                </button>
+                </div>
+            </td>
+            <td>
+                <div>
+                    <button type="button" class="btn btn-outline-info btn-xs">
+                    <span class="fa fa-file-text"></span>
                 </button>
                 </div>
             </td>
