@@ -38,6 +38,7 @@ import { FormsComponent } from './componetsFeedback/forms/forms.component';
 import { CampsComponent } from './componetsFeedback/camps/camps.component';
 import { ViewDetailsFormComponent } from './componetsFeedback/view-details-form/view-details-form.component';
 import { ViewCampComponetComponent } from './componetsFeedback/view-camp-componet/view-camp-componet.component';
+import { ListQuestFormComponetComponent } from './componetsFeedback/list-quest-form-componet/list-quest-form-componet.component';
 
 
 @NgModule({
@@ -63,7 +64,8 @@ import { ViewCampComponetComponent } from './componetsFeedback/view-camp-compone
     FormsComponent,
     CampsComponent,
     ViewDetailsFormComponent,
-    ViewCampComponetComponent, 
+    ViewCampComponetComponent,
+    ListQuestFormComponetComponent, 
   ],
   imports: [
     BrowserModule,

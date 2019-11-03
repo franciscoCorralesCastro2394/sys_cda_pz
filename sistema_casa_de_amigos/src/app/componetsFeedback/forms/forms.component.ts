@@ -40,13 +40,10 @@ export class FormsComponent implements OnInit {
 
   //funcion que inserta un formulario, ademas de crear la relacion formulario por Coordinador 
   nuevoForm(newForm:string){
-    console.log(newForm);
     let fecha = Date.now();
-
     let data = new FormData();//objeto que va a ser un formulario
     data.append('form_name',newForm);
     data.append('form_update',this.datePipe.transform(fecha, 'yyyy-MM-dd'));
-    
     this.forms.insertForms(data).subscribe(data =>{//el objeto se envia la base de datos
        if(data){
          this.idInserted = +data; // se obtiene el id del objeto insertado
@@ -66,8 +63,6 @@ export class FormsComponent implements OnInit {
         this.getForms();
        }
     });
-
-
   }
 
   EditForm(){//editar formulario
@@ -78,7 +73,6 @@ export class FormsComponent implements OnInit {
 
     this.forms.editForm(data).subscribe(responce => {
       if(responce){
-        console.log(responce)
         this.getForms();
         swal("Formulario Guardado", "Exito", "success");
       }else{

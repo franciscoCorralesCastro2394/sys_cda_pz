@@ -25,11 +25,21 @@ export class CampsComponent implements OnInit {
               private router:Router) { }
    camps$ : Observable<campFeedback[]>; 
    private user:string;
+   private controlAdmin:boolean;
+   private rolesByUser:string;
    private formGroupRegisterCamp: FormGroup;
 
   ngOnInit() {
     this.getCamps();
     this.iniciarRegisterCamp();
+    this.rolesByUser = this.dataStorageService.getObjectValue('roles');
+
+    if(this.rolesByUser.includes('Admin')){
+       this.controlAdmin = true;
+    }else{
+      this.controlAdmin = false;
+    }
+
   }
 
 

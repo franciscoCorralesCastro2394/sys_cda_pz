@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { formFeedBack,coordByForm,campFeedback,questFeedback,questType,camByVoluntInsert} from '../interfaces/feedbackInterfaces';
+import { FormByCamp,formFeedBack,coordByForm,campFeedback,questFeedback,questType,camByVoluntInsert} from '../interfaces/feedbackInterfaces';
 import { Observable } from 'rxjs';
 
 @Injectable(
@@ -95,5 +95,9 @@ export class FeedbackService {
 
   deleteVoluntPorCamp(id:number): Observable<string>{//metodo pra obtener los tipos de preguntas
     return this.http.get<string>(this.urlApiFormsFeedback + 'CampamentoPorVoluntario/deleteCampamentoPorVoluntario/'+id);
+  }
+
+  insertFormByCamp(data:FormByCamp){
+    return this.http.post<FormByCamp>(this.urlApiFormsFeedback + 'FormPorCamp/insertFormPorCamp',data);
   }
 }

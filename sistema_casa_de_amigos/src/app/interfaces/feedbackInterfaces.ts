@@ -50,3 +50,22 @@ export interface camByVoluntInsert{
     id_voluntier:string;
 
 }
+
+export interface FormByCamp {
+    id_camp_by_form?:number;	
+    id_camp:number;
+    id_form:number;
+}
+
+export interface FormByCampByVolt {
+    id_form_feedback:number;
+    form_name:string;
+    form_update:string;
+    id_camp_group:number;
+    camp_mane:string;
+    date_ini:string;
+    date_end:string;
+    update_date:string;
+    id_coordinator:string;
+    state_camp:string;
+}
