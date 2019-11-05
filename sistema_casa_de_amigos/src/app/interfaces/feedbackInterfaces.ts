@@ -69,3 +69,18 @@ export interface FormByCampByVolt {
     id_coordinator:string;
     state_camp:string;
 }
+
+export interface QuestByForm {
+    id_quest_feedback:number;
+    question_feedback:string;
+    type_cues:string;
+    id_form_by_quest:number;
+}
+
+export interface RespByQuest {
+    id_responce_by_question?:number;
+    id_question_by_form:number;
+    responce:string;
+    date_update:string;
+    voluntier:string;
+}

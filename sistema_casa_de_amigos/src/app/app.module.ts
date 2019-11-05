@@ -39,7 +39,7 @@ import { CampsComponent } from './componetsFeedback/camps/camps.component';
 import { ViewDetailsFormComponent } from './componetsFeedback/view-details-form/view-details-form.component';
 import { ViewCampComponetComponent } from './componetsFeedback/view-camp-componet/view-camp-componet.component';
 import { ListQuestFormComponetComponent } from './componetsFeedback/list-quest-form-componet/list-quest-form-componet.component';
-
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -78,7 +78,8 @@ import { ListQuestFormComponetComponent } from './componetsFeedback/list-quest-f
     HttpClientModule,
     AngularFireModule.initializeApp(environment.fireBase),
     AngularFirestoreModule,
-    AngularFireAuthModule
+    AngularFireAuthModule,
+    FormsModule
     //RouterModule.forRoot(routes,{scrollPositionRestoration:'enabled'})
   ],
   providers: [ DatePipe,DataStorageService],

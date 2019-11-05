@@ -1,3 +1,51 @@
-<p>
-  list-quest-form-componet works!
-</p>
+<div class="container">
+  <br>
+  <br>
+  <br>
+  <div id="bds" class="card mt-2" *ngIf="quest">
+    <div class="card-body">
+      <h5 class="card-title">{{quest.question_feedback}}</h5>
+      <br>
+      <div class="ml-5" *ngIf="quest.type_cues === 'Texto'">
+        <textarea rows="4" class="form-control" name="textoResp" type="text"  [(ngModel)]="respTexto">
+        </textarea>
+      </div>
+      <div class="ml-5" *ngIf="quest.type_cues === 'Escala'">
+        <br>
+          <div class="form-group">
+              <label   for="escalaSel">Seleccione el nivel de Agrado</label>
+              <div class="form-group">
+                  <select class="form-control" 
+                  [(ngModel)]="selectedScala">
+                  <option [value]="options.id" *ngFor="let options of optionsEscala">{{options.name}}</option>
+                   </select>
+            </div>
+          </div>
+      </div>
+      <div class="ml-5" *ngIf="quest.type_cues === 'Binario'">
+          <br>
+          <div class="form-group">
+                  <label for="binarioSel">Seleccione un opción</label>
+                  <select class="form-control" 
+                  [(ngModel)]="selectedBinario">
+                  <option [value]="optionsBinario.id" *ngFor="let optionsBinario of optionsBinarios">{{optionsBinario.name}}</option>
+                   </select>
+            </div>
+      </div>
+      <br>
+      <div class="row">
+        <div class="float-left">
+          <button type="button" 
+          (click)="back()"
+          class="btn btn-outline-info">
+            <span class="fa fa-angle-double-left"></span>
+            Back</button>
+          <button (click)="next(quest)" type="button" class="btn btn-outline-info ">
+            Next
+            <span class="	fa fa-angle-double-right"></span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
