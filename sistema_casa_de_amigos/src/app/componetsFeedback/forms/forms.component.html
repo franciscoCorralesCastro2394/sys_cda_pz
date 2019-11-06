@@ -1,0 +1,115 @@
+<br>
+<br>
+<br>
+<div class="container">
+    <div class="float-right">
+        <button type="button" 
+        class="btn btn-outline-info btn-xs"
+        data-toggle="modal" data-target="#ModalNewForm"> 
+        Nuevo Formulario
+        <span class="fa fa-plus-square-o"></span>
+    </button>
+    </div>
+    <table class="table table-hover">
+        <tr>
+            <th>ID</th>
+            <th>Formulario</th>
+            <th>Fecha</th>
+            <th>Editar</th>
+            <th>Eliminar</th>	
+            <!-- <th>Aplicar Formulario</th> -->
+        </tr>
+        <tr *ngFor="let form of (forms$  | async)"
+        data-toggle="tooltip" data-placement="top" 
+        title="Doble Click para ver detalles"
+        (dblclick)="verDetalle(form)" >
+            <td>{{form.id_form_feedback}}</td>
+            <td>{{form.form_name}}</td>
+            <td>{{form.form_update}}</td>
+            <td>
+                <div>
+                    <button type="button" class="btn btn-outline-info btn-xs"
+                    (click)="editarForm(form)"
+                    data-toggle="modal" data-target="#ModalEditForm">
+                    <span class="fa fa-save"></span>
+                </button>
+                </div>
+            </td>
+            <td>
+                <div>
+                    <button type="button" class="btn btn-outline-danger btn-xs">
+                    <span class="fas fa-trash"></span>
+                </button>
+                </div>
+            </td>
+            <!-- <td>
+                <div>
+                    <button type="button" class="btn btn-outline-info btn-xs">
+                    <span class="fa fa-file-text"></span>
+                </button>
+                </div>
+            </td> -->
+        </tr>
+    </table>
+</div>
+
+
+<!-- Modal -->
+<div class="modal fade" id="ModalNewForm" tabindex="-1" role="dialog" 
+   aria-labelledby="ModalNewFormTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLongTitle">Nuevo Formulario</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+            <div class="input-group mb-3">
+                <input #newForm type="text" class="form-control" placeholder="Formulario" aria-label="Formulario" 
+                aria-describedby="basic-addon1">
+              </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+          <button type="button" data-dismiss="modal" class="btn btn-primary" (click)="nuevoForm(newForm.value)" >Guardar Formulario </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+
+  <!-- Modal -->
+<div class="modal fade" id="ModalEditForm" tabindex="-1" role="dialog" 
+aria-labelledby="ModalEditFormTitle" aria-hidden="true">
+ <div class="modal-dialog modal-dialog-centered" role="dialog">
+   <div class="modal-content">
+     <div class="modal-header">
+       <h5 class="modal-title" id="exampleModalLongTitle">Registrar Usario</h5>
+       <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+         <span aria-hidden="true">&times;</span>
+       </button>
+     </div>
+     <div class="modal-body">
+           <form [formGroup]="formGroupRegisterForm" id="formGroupRegisterForm">
+                   <div class="form-group">
+                       <label for="form_name">Nombre del Campamento</label>
+                       <input class="form-control" formControlName="form_name" name="form_name" id="form_name" type="text">
+                       <div *ngIf="formGroupRegisterForm.controls['form_name'].dirty">
+                           <div class="form-control-feedback text-danger" *ngIf="formGroupRegisterForm.controls['form_name'].errors?.required">
+                               El nombre del Campamento es requerido
+                           </div>
+                       </div>
+                   </div>
+           </form>
+     </div>
+     <div class="modal-footer">
+       <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+       <button type="button" data-dismiss="modal" class="btn btn-primary" (click)="EditForm()" >Guardar Formulario </button>
+     </div>
+   </div>
+ </div>
+</div>

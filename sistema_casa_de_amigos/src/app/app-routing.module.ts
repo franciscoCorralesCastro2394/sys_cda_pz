@@ -16,7 +16,11 @@ import { EditSitioComponent } from '../app/components/edit-sitio/edit-sitio.comp
 import { SitioSeguidoComponent } from '../app/components/sitio-seguido/sitio-seguido.component'; 
 import { AuthenticationGuard } from '../app/guards/authentication/authentication.guard'; 
 import { AuthorizationGuard } from '../app/guards/authorization/authorization.guard'; 
-
+import { FormsComponent } from '../app/componetsFeedback/forms/forms.component';
+import { CampsComponent } from './componetsFeedback/camps/camps.component';
+import { ViewDetailsFormComponent } from './componetsFeedback/view-details-form/view-details-form.component';
+import { ViewCampComponetComponent } from './componetsFeedback/view-camp-componet/view-camp-componet.component';
+import { ListQuestFormComponetComponent } from './componetsFeedback/list-quest-form-componet/list-quest-form-componet.component';
 
 const routes: Routes = [
   { path: 'acerca-de', component: AcercaDeComponent },
@@ -24,6 +28,11 @@ const routes: Routes = [
   { path: 'servicios', component: ServiciosComponent },
   { path: 'lista-noticias', component: NoticiasListComponent },
   { path: 'inicio', component: NoticiasListComponent },
+  { path: 'formularios', component: FormsComponent},
+  { path: 'view-details-form/:id', component: ViewDetailsFormComponent},
+  { path: 'view-details-camp/:id', component: ViewCampComponetComponent},
+  { path: 'view-list-quest-form/:id', component: ListQuestFormComponetComponent},
+  { path: 'campamentos', component: CampsComponent},
   { path: 'login/:selector', component: LoginComponent},
   { path: 'loginIngresar/:selector', component: LoginComponent},
   { path: 'lista-sitios', component: SitiosListComponent},

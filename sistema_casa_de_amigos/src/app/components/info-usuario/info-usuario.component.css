@@ -60,7 +60,7 @@ section {
 
 section .section-title {
     text-align: center;
-    color: #1f6617;
+    color: #000000;
     margin-bottom: 50px;
     text-transform: uppercase;
 }
@@ -70,7 +70,7 @@ section .section-title {
     background: #ffffff;
 }
 
-.image-flip:hover .backside,
+/* .image-flip:hover .backside,
 .image-flip.hover .backside {
     -webkit-transform: rotateY(0deg);
     -moz-transform: rotateY(0deg);
@@ -78,38 +78,38 @@ section .section-title {
     -ms-transform: rotateY(0deg);
     transform: rotateY(0deg);
     border-radius: .25rem;
-}
+} */
 
-.image-flip:hover .frontside,
+/* .image-flip:hover .frontside,
 .image-flip.hover .frontside {
-    -webkit-transform: rotateY(180deg);
-    -moz-transform: rotateY(180deg);
-    -o-transform: rotateY(180deg);
-    transform: rotateY(180deg);
-}
-
+    -webkit-transform: rotateY(90deg);
+    -moz-transform: rotateY(90deg);
+    -o-transform: rotateY(90deg);
+    transform: rotateY(90deg);
+} */
+/* 
 .mainflip {
-    -webkit-transition: 1s;
+    -webkit-transition: 3s;
     -webkit-transform-style: preserve-3d;
-    -ms-transition: 1s;
-    -moz-transition: 1s;
-    -moz-transform: perspective(1000px);
+    -ms-transition: 3s;
+    -moz-transition: 3s;
+    -moz-transform: perspective(3000px);
     -moz-transform-style: preserve-3d;
     -ms-transform-style: preserve-3d;
-    transition: 1s;
+    transition: 3s;
     transform-style: preserve-3d;
     position: relative;
-}
+} */
 
-.frontside {
+/* .frontside {
     position: relative;
     -webkit-transform: rotateY(0deg);
     -ms-transform: rotateY(0deg);
     z-index: 2;
     margin-bottom: 30px;
-}
+} */
 
-.backside {
+/* .backside {
     position: absolute;
     top: 0;
     left: 0;
@@ -122,9 +122,9 @@ section .section-title {
     -webkit-box-shadow: 5px 7px 9px -4px rgb(158, 158, 158);
     -moz-box-shadow: 5px 7px 9px -4px rgb(158, 158, 158);
     box-shadow: 5px 7px 9px -4px rgb(158, 158, 158);
-}
+} */
 
-.frontside,
+/* .frontside,
 .backside {
     -webkit-backface-visibility: hidden;
     -moz-backface-visibility: hidden;
@@ -140,7 +140,7 @@ section .section-title {
     -ms-transform-style: preserve-3d;
     transition: 1s;
     transform-style: preserve-3d;
-}
+} */
 
 .frontside .card,
 .backside .card {
@@ -149,12 +149,12 @@ section .section-title {
 
 .backside .card a {
     font-size: 18px;
-    color: #1f6617 !important;
+    color: #000000 !important;
 }
 
 .frontside .card .card-title,
 .backside .card .card-title {
-    color: #1f6617 !important;
+    color: #000000 !important;
 }
 
 .frontside .card .card-body img,

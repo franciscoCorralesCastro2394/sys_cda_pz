@@ -12,7 +12,7 @@ import { Observable } from 'rxjs';
 export class UsuariosService {
  
 
-   private UsuarioCollectionName = 'usuarios';
+  private UsuarioCollectionName = 'usuarios';
   constructor(private angularFirestore: AngularFirestore ) {
 
    }

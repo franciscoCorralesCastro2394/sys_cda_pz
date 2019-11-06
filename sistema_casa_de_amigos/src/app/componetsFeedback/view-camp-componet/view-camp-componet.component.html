@@ -1,0 +1,109 @@
+<br>
+<div class="container">
+  <div class="row">
+    <div class="col-sm-6">
+      <h1 *ngIf="campName">
+        Campamento: {{campName}}
+      </h1>
+    </div>
+    <div class="col-sm-6">
+      <button type="button"
+      class="btn btn-outline-info btn-xs float-right"
+      data-toggle="modal" data-target="#ModalAsigForm"> 
+        Aplicar Formulario
+        <span class="fa fa-save"></span>
+      </button>
+    </div>
+  </div>
+  <br>
+  <div class="row">
+    <div class="col-6 col-md-6 col-sm">
+      <div class="float-left">
+        <input type="text" class="form-control" placeholder="Digite un nombre" aria-label="Digite un nombre"
+          aria-describedby="button">
+      </div>
+      <br>
+      <table class="table table-hover" *ngIf="users">
+        <tr>
+          <th>#</th>
+          <th>Nombre Usuario</th>
+          <th>Agregar</th>
+        </tr>
+        <tr *ngFor="let user of users; let i=index">
+          <td>{{i + 1}}</td>
+          <td>{{user.FirstName + user.LastName}}</td>
+          <td>
+            <div>
+              <button type="button" (click)="selVoluntarioCamp(user)" class="btn btn-outline-info btn-xs">
+                <span class="fa fa-check-square-o"></span>
+              </button>
+            </div>
+          </td>
+        </tr>
+      </table>
+    </div>
+    <div class="col-6 col-md-6 col-sm " id="bordeLeft">
+      <div class="float-left">
+        <input type="text" class="form-control" placeholder="Digite un nombre" aria-label="Digite un nombre"
+          aria-describedby="button">
+      </div>
+      <br>
+      <table class="table table-hover" *ngIf="users">
+        <tr>
+          <th>#</th>
+          <th>Nombre Usuario</th>
+          <th>Eliminar</th>
+        </tr>
+        <tr *ngFor="let userAsig of userAsigToCamp; let a=index">
+          <td>{{a + 1}}</td>
+          <td>{{userAsig.FirstName + userAsig.LastName}}</td>
+          <td>
+            <div>
+              <button type="button" (click)="eliminarVoltToCamp(userAsig)" class="btn btn-outline-danger btn-xs">
+                <span class="fa fa-trash-o"></span>
+              </button>
+            </div>
+          </td>
+        </tr>
+      </table>
+    </div>
+  </div>
+</div>
+
+
+
+<!-- Modal -->
+<div class="modal fade" id="ModalAsigForm" tabindex="-1" role="dialog" 
+   aria-labelledby="ModalAsigFormTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLongTitle">Asignar un Formulario</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+              <form [formGroup]="formGroupAsigForm" id="formGroupAsigForm">
+                      <div class="form-group">
+                          <label for="id_form_feedback">Seleccione un Formulario</label>
+                          <select class="form-control" formControlName="id_form_feedback" name="id_form_feedback" id="id_form_feedback">
+                            <option *ngFor="let form  of (forms$  | async)" [value]="form.id_form_feedback">
+                              {{form.form_name}}
+                            </option>
+                          </select>
+                          <div *ngIf="formGroupAsigForm.controls['id_form_feedback'].dirty">
+                              <div class="form-control-feedback text-danger" *ngIf="formGroupAsigForm.controls['id_form_feedback'].errors?.required">
+                                  El formulario es necesario
+                              </div>
+                          </div>
+                      </div>
+              </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+          <button type="button" (click)="asignarFormToCamp()" data-dismiss="modal" class="btn btn-primary" >Guardar Cambios</button>
+        </div>
+      </div>
+    </div>
+  </div>
