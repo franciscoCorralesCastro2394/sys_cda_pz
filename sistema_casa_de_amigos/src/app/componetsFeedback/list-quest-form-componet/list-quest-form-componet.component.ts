@@ -4,7 +4,7 @@ import { DataStorageService } from 'src/app/services/data-storage.service';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { camByVoluntInsert } from '../../interfaces/feedbackInterfaces';
-import { RespByQuest, formFeedBack, QuestByForm} from '../../interfaces/feedbackInterfaces';
+import { RespByQuest, formFeedBack, QuestByForm, FormByCampByVolunt} from '../../interfaces/feedbackInterfaces';
 import { Observable } from 'rxjs';
 import { DatePipe } from '@angular/common';
 import { UsuariosService } from '../../services/usuarios.service';
@@ -22,6 +22,7 @@ export class ListQuestFormComponetComponent implements OnInit {
   private idForm: number;  
   private quests: QuestByForm[] = [];
   private respByForm: RespByQuest[] = [];
+  private formByCampByVolt: FormByCampByVolunt[] = [];
   private quest : QuestByForm;
   private fin:boolean = false;
   private indice:number = 0;
@@ -43,6 +44,11 @@ export class ListQuestFormComponetComponent implements OnInit {
   ngOnInit(){
     this.idForm = this.activatedRoute.snapshot.params['id'];
     this.idUserVolnt = this.dataStorageService.getObjectValue('UserNow');
+
+    //this.questService.getFormByCampByVolunt(this.)
+
+    //this.formByCampByVolt 
+
     this.getQuestion();
     this.setSelectores();
   }
@@ -138,7 +144,10 @@ export class ListQuestFormComponetComponent implements OnInit {
          }
       });
     });
+    // let data:formByCampByVolt = {
+
+    // }
+   // this.questService.insertFormByCampByVolunt()
     this.router.navigate(['/private/informacion-usuario/' + this.idUserVolnt]); 
   }
-
 }

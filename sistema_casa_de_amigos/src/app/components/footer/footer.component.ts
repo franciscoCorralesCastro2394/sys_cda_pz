@@ -11,5 +11,6 @@ export class FooterComponent implements OnInit {
     this.lastUpdate=new Date();
    }
   ngOnInit() {
+    console.log(this.lastUpdate);
   }
 }
