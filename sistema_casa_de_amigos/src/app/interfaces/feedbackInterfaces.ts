@@ -84,3 +84,12 @@ export interface RespByQuest {
     date_update:string;
     voluntier:string;
 }
+
+
+export interface FormByCampByVolunt
+{
+    id_camp_by_form_volt?:number;
+    id_camp:number;
+    id_form:number;
+    id_volnt:string;
+}

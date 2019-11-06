@@ -126,7 +126,7 @@ export class ListQuestFormComponetComponent implements OnInit {
     }
   }
 
-  finalizarEncuesta(){//metodo que envia a guardar a una entrevista a la base de datos 
+  finalizarEncuesta(){//metodo que envia a guardar a una entrevista a la base de datos
     let controlResp:number = 0;
     this.respByForm.forEach(resp =>{
       this.questService.insertRespByQuest(resp).subscribe(dataResp => {
