@@ -23,25 +23,11 @@ export class ListQuestFormComponetComponent implements OnInit {
   private quests: QuestByForm[] = [];
   private respByForm: RespByQuest[] = [];
   private quest : QuestByForm;
+  private fin:boolean = false;
   private indice:number = 0;
-  public optionsBinarios:any = [
-    {id: 1, name:"SI (Yes)"},
-    {id: 2, name:"NO (Not)"}
-  ];
+  public optionsBinarios:any;
 
-  public optionsEscala:any = [
-    {id: 0, name:"0"},
-    {id: 1, name:"1"},
-    {id: 2, name:"2"},
-    {id: 3, name:"3"},
-    {id: 4, name:"4"},
-    {id: 5, name:"5"},
-    {id: 6, name:"6"},
-    {id: 7, name:"7"},
-    {id: 8, name:"8"},
-    {id: 9, name:"9"},
-    {id: 10, name:"10"},
-  ];
+  public optionsEscala:any;
   private value:any;
   private selectedBinario:string;
   private selectedScala:string;
@@ -49,6 +35,7 @@ export class ListQuestFormComponetComponent implements OnInit {
   private idUserVolnt:string;
 
   constructor(private activatedRoute: ActivatedRoute,
+              private router:Router,
               private datePipe: DatePipe,
               private dataStorageService:DataStorageService,
               private questService: FeedbackFormServiceService) { }
@@ -57,6 +44,29 @@ export class ListQuestFormComponetComponent implements OnInit {
     this.idForm = this.activatedRoute.snapshot.params['id'];
     this.idUserVolnt = this.dataStorageService.getObjectValue('UserNow');
     this.getQuestion();
+    this.setSelectores();
+  }
+
+  setSelectores(){//funcion que setea los valores de los combos para las diferentes opciones 
+        this.optionsEscala =  [
+      {id: 0, name:"0"},
+      {id: 1, name:"1"},
+      {id: 2, name:"2"},
+      {id: 3, name:"3"},
+      {id: 4, name:"4"},
+      {id: 5, name:"5"},
+      {id: 6, name:"6"},
+      {id: 7, name:"7"},
+      {id: 8, name:"8"},
+      {id: 9, name:"9"},
+      {id: 10, name:"10"},
+    ];
+
+    this.optionsBinarios = [
+      {id: 1, name:"SI (Yes)"},
+      {id: 2, name:"NO (Not)"}
+    ];
+
   }
 
   getQuestion(){
@@ -66,7 +76,7 @@ export class ListQuestFormComponetComponent implements OnInit {
     });
   }
 
-  next(typeQuest:QuestByForm){
+  next(typeQuest:QuestByForm){//funcion de siguinete pregunta 
     if(this.indice < this.quests.length - 1){
       this.indice += 1;
       this.quest = this.quests[this.indice];
@@ -99,7 +109,13 @@ export class ListQuestFormComponetComponent implements OnInit {
         voluntier : this.idUserVolnt
       }
      }
+
+     this.selectedBinario = '';
+     this.selectedScala = '';
+     this.respTexto = '';
      this.respByForm.push(resp);
+    }else{
+       this.fin = true;
     }
   }
 
@@ -108,6 +124,21 @@ export class ListQuestFormComponetComponent implements OnInit {
       this.indice -= 1;
       this.quest = this.quests[this.indice];
     }
+  }
+
+  finalizarEncuesta(){//metodo que envia a guardar a una entrevista a la base de datos 
+    let controlResp:number = 0;
+    this.respByForm.forEach(resp =>{
+      this.questService.insertRespByQuest(resp).subscribe(dataResp => {
+        if(dataResp){
+          controlResp +=1;
+        }
+         if(controlResp === this.respByForm.length){
+           swal("Formulario Guardado", "Exito", "success");
+         }
+      });
+    });
+    this.router.navigate(['/private/informacion-usuario/' + this.idUserVolnt]); 
   }
 
 }

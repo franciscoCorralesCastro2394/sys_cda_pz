@@ -24,7 +24,7 @@ export class FeedbackFormServiceService {
 
 
   insertRespByQuest(data:RespByQuest): Observable<RespByQuest>{//metodo para obtener formularios de un voluntario enun campamento
-    return this.http.post<RespByQuest>(this.urlApiFormsFeedback + 'Formularios/getFormulariosPorCampPorVolt/',data);
+    return this.http.post<RespByQuest>(this.urlApiFormsFeedback + 'RespuestaPorPregunta/insertRespuestaPorPregunta/',data);
   }
 
 
