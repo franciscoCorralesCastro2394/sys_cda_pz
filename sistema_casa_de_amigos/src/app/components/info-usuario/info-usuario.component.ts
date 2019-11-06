@@ -3,8 +3,9 @@ import { ActivatedRoute } from '@angular/router';
 import { UsuariosService } from '../../services/usuarios.service';
 import { FeedbackFormServiceService } from '../../servicesFeedback/feedback-form-service.service';
 import { Observable } from 'rxjs';
-import { FormByCampByVolt } from '../../interfaces/feedbackInterfaces';
+import { FormByCampByVolt, FormByCampByVolunt } from '../../interfaces/feedbackInterfaces';
 import {Router} from '@angular/router';
+
 
 
 @Component({
@@ -15,11 +16,15 @@ import {Router} from '@angular/router';
 })
 export class InfoUsuarioComponent implements OnInit {
   private forms$ : Observable<FormByCampByVolt[]>; 
+  private forms_ : FormByCampByVolt[] = []; 
+  private forms : FormByCampByVolt[] = []; 
   userId: string;
   users: any[] = [];
   userLogin: any;
   nombre: string;
   img: string;
+  private formByCampByVolt: FormByCampByVolunt[] = [];
+
   
   constructor(private activatedRoute: ActivatedRoute,
     private usuariosService: UsuariosService,
@@ -27,14 +32,14 @@ export class InfoUsuarioComponent implements OnInit {
     private router:Router) {
     this.userId = this.activatedRoute.snapshot.params['user'];
     this.cargarUsuario();
+    this.getFormbyCampByUser();
   }
   ngOnInit() {
     this.getFormbyCampByUser();
   }
 
   getFormbyCampByUser(){
-
-    this.forms$ = this.formService.getFormsById(this.userId);
+   this.forms$ = this.formService.getFormsById(this.userId);
   }
 
   cargarUsuario() {//car la infromacion del uaurio 
@@ -50,9 +55,13 @@ export class InfoUsuarioComponent implements OnInit {
     });
   }
 
+  formularioConcluido(idForm:string, idCamp:string){
+    
+  }
 
-  realizarForm(data:string){
-    this.router.navigate(['view-list-quest-form',data]);
+
+  realizarForm(idForm:string,idCamp:string){
+    this.router.navigate(['view-list-quest-form',idForm,idCamp]);
   }
 
 

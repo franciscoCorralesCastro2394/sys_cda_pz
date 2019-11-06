@@ -31,7 +31,7 @@ const routes: Routes = [
   { path: 'formularios', component: FormsComponent},
   { path: 'view-details-form/:id', component: ViewDetailsFormComponent},
   { path: 'view-details-camp/:id', component: ViewCampComponetComponent},
-  { path: 'view-list-quest-form/:id', component: ListQuestFormComponetComponent},
+  { path: 'view-list-quest-form/:id/:idcamp', component: ListQuestFormComponetComponent},
   { path: 'campamentos', component: CampsComponent},
   { path: 'login/:selector', component: LoginComponent},
   { path: 'loginIngresar/:selector', component: LoginComponent},

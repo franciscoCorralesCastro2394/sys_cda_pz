@@ -28,12 +28,12 @@ export class FeedbackFormServiceService {
   }
 
 
-  getFormByCampByVolunt(formID:number): Observable<FormByCampByVolunt[]>{//metodo para obtener formularios de un voluntario enun campamento
-    return this.http.get<FormByCampByVolunt[]>(this.urlApiFormsFeedback + 'FormularioPorVoluntario/getFormularioPorVoluntario/'+formID);
+  getFormByCampByVolunt(): Observable<FormByCampByVolunt[]>{//metodo para obtener formularios de un voluntario enun campamento
+    return this.http.get<FormByCampByVolunt[]>(this.urlApiFormsFeedback + 'FormularioPorVoluntario/getFormularioPorVoluntario/');
   }
 
   insertFormByCampByVolunt(data:FormByCampByVolunt): Observable<FormByCampByVolunt>{//metodo para obtener formularios de un voluntario enun campamento
-    return this.http.post<FormByCampByVolunt>(this.urlApiFormsFeedback + 'RespuestaPorPregunta/insertRespuestaPorPregunta/',data);
+    return this.http.post<FormByCampByVolunt>(this.urlApiFormsFeedback + 'FormularioPorVoluntario/insertFormularioPorVoluntario/',data);
   }
 
 }

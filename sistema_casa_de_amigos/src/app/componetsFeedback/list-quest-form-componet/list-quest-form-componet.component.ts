@@ -22,7 +22,6 @@ export class ListQuestFormComponetComponent implements OnInit {
   private idForm: number;  
   private quests: QuestByForm[] = [];
   private respByForm: RespByQuest[] = [];
-  private formByCampByVolt: FormByCampByVolunt[] = [];
   private quest : QuestByForm;
   private fin:boolean = false;
   private indice:number = 0;
@@ -34,6 +33,7 @@ export class ListQuestFormComponetComponent implements OnInit {
   private selectedScala:string;
   private respTexto:string;
   private idUserVolnt:string;
+  private idCamp:string;
 
   constructor(private activatedRoute: ActivatedRoute,
               private router:Router,
@@ -43,11 +43,10 @@ export class ListQuestFormComponetComponent implements OnInit {
 
   ngOnInit(){
     this.idForm = this.activatedRoute.snapshot.params['id'];
+    this.idCamp = this.activatedRoute.snapshot.params['idcamp'];
+    
     this.idUserVolnt = this.dataStorageService.getObjectValue('UserNow');
 
-    //this.questService.getFormByCampByVolunt(this.)
-
-    //this.formByCampByVolt 
 
     this.getQuestion();
     this.setSelectores();
@@ -79,13 +78,20 @@ export class ListQuestFormComponetComponent implements OnInit {
     this.questService.getQuestionByForm(this.idForm).subscribe((resp) =>{
        this.quests = resp;
        this.quest = this.quests[this.indice];
+       this.indice += 1;
     });
   }
 
   next(typeQuest:QuestByForm){//funcion de siguinete pregunta 
-    if(this.indice < this.quests.length - 1){
-      this.indice += 1;
+  if(this.indice === this.quests.length)
+    {
+      this.fin = true;
+    }
+
+    if(this.indice <= this.quests.length){
+      
       this.quest = this.quests[this.indice];
+      this.indice += 1;
       let resp:RespByQuest;
 
      if(typeQuest.type_cues === 'Binario'){
@@ -120,9 +126,13 @@ export class ListQuestFormComponetComponent implements OnInit {
      this.selectedScala = '';
      this.respTexto = '';
      this.respByForm.push(resp);
-    }else{
-       this.fin = true;
+
+   
     }
+
+    
+    
+    
   }
 
   back(){
@@ -141,13 +151,18 @@ export class ListQuestFormComponetComponent implements OnInit {
         }
          if(controlResp === this.respByForm.length){
            swal("Formulario Guardado", "Exito", "success");
+           let data:FormByCampByVolunt = {
+            id_camp:+this.idCamp,
+            id_form:this.idForm,
+            id_volnt: this.idUserVolnt 
+          }; 
+            this.questService.insertFormByCampByVolunt(data).subscribe(data => {
+              this.router.navigate(['/private/informacion-usuario/' + this.idUserVolnt]); 
+            });
          }
       });
     });
-    // let data:formByCampByVolt = {
-
-    // }
-   // this.questService.insertFormByCampByVolunt()
-    this.router.navigate(['/private/informacion-usuario/' + this.idUserVolnt]); 
+     
+   
   }
 }
