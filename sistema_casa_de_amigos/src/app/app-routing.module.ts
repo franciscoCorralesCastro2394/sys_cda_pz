@@ -21,6 +21,7 @@ import { CampsComponent } from './componetsFeedback/camps/camps.component';
 import { ViewDetailsFormComponent } from './componetsFeedback/view-details-form/view-details-form.component';
 import { ViewCampComponetComponent } from './componetsFeedback/view-camp-componet/view-camp-componet.component';
 import { ListQuestFormComponetComponent } from './componetsFeedback/list-quest-form-componet/list-quest-form-componet.component';
+import { ResponceListComponetComponent } from './componetsFeedback/responce-list-componet/responce-list-componet.component';
 
 const routes: Routes = [
   { path: 'acerca-de', component: AcercaDeComponent },
@@ -28,11 +29,16 @@ const routes: Routes = [
   { path: 'servicios', component: ServiciosComponent },
   { path: 'lista-noticias', component: NoticiasListComponent },
   { path: 'inicio', component: NoticiasListComponent },
-  { path: 'formularios', component: FormsComponent},
+  { path: 'formularios', component: FormsComponent, 
+  canActivate: [AuthorizationGuard], data: {role: ['Admin','Coordinador']}
+},
+{ path: 'view-details-responce/:id', component: ResponceListComponetComponent},
   { path: 'view-details-form/:id', component: ViewDetailsFormComponent},
   { path: 'view-details-camp/:id', component: ViewCampComponetComponent},
   { path: 'view-list-quest-form/:id/:idcamp', component: ListQuestFormComponetComponent},
-  { path: 'campamentos', component: CampsComponent},
+  { path: 'campamentos', component: CampsComponent, 
+  canActivate: [AuthorizationGuard], data: {role: ['Admin','Coordinador']}
+},
   { path: 'login/:selector', component: LoginComponent},
   { path: 'loginIngresar/:selector', component: LoginComponent},
   { path: 'lista-sitios', component: SitiosListComponent},

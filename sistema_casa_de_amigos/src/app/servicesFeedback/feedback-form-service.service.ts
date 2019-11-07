@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { FormByCampByVolt,QuestByForm,RespByQuest,FormByCampByVolunt} from '../interfaces/feedbackInterfaces';
+import { FormByCampByVolt,QuestByForm,RespByQuest,FormByCampByVolunt,ResponceByForm} from '../interfaces/feedbackInterfaces';
 import { Observable } from 'rxjs';
 
 @Injectable({
@@ -36,4 +36,8 @@ export class FeedbackFormServiceService {
     return this.http.post<FormByCampByVolunt>(this.urlApiFormsFeedback + 'FormularioPorVoluntario/insertFormularioPorVoluntario/',data);
   }
 
+
+  getRespByFormByVolunt(idForm:number): Observable<ResponceByForm[]>{//metodo para obtener formularios de un voluntario enun campamento
+    return this.http.get<ResponceByForm[]>(this.urlApiFormsFeedback + 'RespuestaPorPregunta/getPreguntasPorForm/'+idForm);
+  }
 }

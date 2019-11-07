@@ -61,7 +61,7 @@ export class LoginService {
     this.currentUser = null;
     this.angularFireAuth.auth.signOut();
     swal("Cierre de sesion", "exito", "success");     
-    this.router.navigateByUrl('/inicio/');
+   //  this.router.navigateByUrl('/inicio/');
   }
 
   loginGoogle(){

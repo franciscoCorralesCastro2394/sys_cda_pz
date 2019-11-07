@@ -40,6 +40,7 @@ import { ViewDetailsFormComponent } from './componetsFeedback/view-details-form/
 import { ViewCampComponetComponent } from './componetsFeedback/view-camp-componet/view-camp-componet.component';
 import { ListQuestFormComponetComponent } from './componetsFeedback/list-quest-form-componet/list-quest-form-componet.component';
 import { FormsModule } from '@angular/forms';
+import { ResponceListComponetComponent } from './componetsFeedback/responce-list-componet/responce-list-componet.component';
 
 @NgModule({
   declarations: [
@@ -65,7 +66,8 @@ import { FormsModule } from '@angular/forms';
     CampsComponent,
     ViewDetailsFormComponent,
     ViewCampComponetComponent,
-    ListQuestFormComponetComponent, 
+    ListQuestFormComponetComponent,
+    ResponceListComponetComponent, 
   ],
   imports: [
     BrowserModule,

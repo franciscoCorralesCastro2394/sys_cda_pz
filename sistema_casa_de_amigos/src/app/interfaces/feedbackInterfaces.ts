@@ -93,3 +93,15 @@ export interface FormByCampByVolunt
     id_form:number;
     id_volnt:string;
 }
+
+
+export interface ResponceByForm {
+    question_feedback:string;
+    id_responce_by_question:number;
+    id_question_by_form:number;
+    responce:string;
+    date_update:string;
+    voluntier:string;
+    id_volnt:string;
+
+}

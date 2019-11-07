@@ -52,3 +52,66 @@
     </div>
 </section>
 
+
+
+<section id="team" class="pb-4">
+        <div class="container">
+            <h5 class="section-title h1"> Estadísticas</h5>
+            <div class="row">
+
+                    <!-- <ul class="nav nav-tabs">
+                            <li class="nav-item">
+                              <a class="nav-link active" href="#">Active</a>
+                            </li>
+                            <li class="nav-item">
+                              <a class="nav-link" href="#">Link</a>
+                            </li>
+                            <li class="nav-item">
+                              <a class="nav-link" href="#">Link</a>
+                            </li>
+                            <li class="nav-item">
+                              <a class="nav-link" href="#" >Disabled</a>
+                            </li>
+                          </ul> -->
+
+                       <!-- <section>
+                            <div class="container">
+                                    <h5 class="section-title h1">Campamentos</h5>
+                                    <div class="row">
+                                
+                                        </div>
+                                    </div>
+                       </section>    -->
+
+                       <section>
+                            <div class="container">
+                                    <h5 class="section-title h1">Formularios</h5>
+                                    <div class="row">
+
+                                            <div class="col-xs-12 col-sm-6 col-md-4" *ngFor="let form of (formsByCoord$ | async)">
+                                                    <div class="image-flip">
+                                                        <div class="mainflip pt-4">
+                                                            <div class="frontside">
+                                                                <div class="card">
+                                                                    <div class="card-body text-center">
+                                                                        <h4 class="card-title">Formulario: {{form.id_form_feedback}}  {{form.form_name}}</h4>
+                                                                        <p class="card-text">Fecha de creación: {{form.form_update}}</p>
+                                                                        <button type="button" 
+                                                                        (click)="verDetalles(form)"
+                                                                        class="btn btn-outline-info btn-xs">
+                                                                                Ver Detalles
+                                                                        <span class="fa fa-align-left"></span>
+                                                                    </button>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                        </div>
+                                    </div>
+                       </section>   
+
+            </div>
+        </div>
+    </section>

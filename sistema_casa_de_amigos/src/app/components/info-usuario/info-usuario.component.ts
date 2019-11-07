@@ -5,14 +5,17 @@ import { FeedbackFormServiceService } from '../../servicesFeedback/feedback-form
 import { Observable } from 'rxjs';
 import { FormByCampByVolt, FormByCampByVolunt } from '../../interfaces/feedbackInterfaces';
 import {Router} from '@angular/router';
-
+import { formFeedBack } from '../../interfaces/feedbackInterfaces';
+import { DataStorageService } from 'src/app/services/data-storage.service';
+import { FeedbackService } from '../../servicesFeedback/feedback.service';
 
 
 @Component({
   selector: 'app-info-usuario',
   templateUrl: './info-usuario.component.html',
   styleUrls: ['./info-usuario.component.css'],
-  providers: [FeedbackFormServiceService]
+  providers: [FeedbackFormServiceService,FeedbackService]
+
 })
 export class InfoUsuarioComponent implements OnInit {
   private forms$ : Observable<FormByCampByVolt[]>; 
@@ -24,11 +27,14 @@ export class InfoUsuarioComponent implements OnInit {
   nombre: string;
   img: string;
   private formByCampByVolt: FormByCampByVolunt[] = [];
-
+  private formsByCoord$: Observable<formFeedBack[]>;
+  private user:string; 
   
   constructor(private activatedRoute: ActivatedRoute,
+    private formsByCoord: FeedbackService,
     private usuariosService: UsuariosService,
     private formService:FeedbackFormServiceService,
+    private dataStorageService:DataStorageService,
     private router:Router) {
     this.userId = this.activatedRoute.snapshot.params['user'];
     this.cargarUsuario();
@@ -36,6 +42,7 @@ export class InfoUsuarioComponent implements OnInit {
   }
   ngOnInit() {
     this.getFormbyCampByUser();
+    this.getForms();
   }
 
   getFormbyCampByUser(){
@@ -66,4 +73,12 @@ export class InfoUsuarioComponent implements OnInit {
 
 
 
+  getForms(){
+    this.user = this.dataStorageService.getObjectValue('UserNow');
+    this.formsByCoord$ = this.formsByCoord.getFormsByCoord(this.user);
+  }
+
+  verDetalles(data:formFeedBack){
+    this.router.navigate(['view-details-responce',data.id_form_feedback]);
+  }
 }
