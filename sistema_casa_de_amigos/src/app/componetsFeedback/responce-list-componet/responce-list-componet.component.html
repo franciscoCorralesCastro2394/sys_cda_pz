@@ -1,0 +1,32 @@
+<br>
+<br>
+<br>
+<div class="container">
+<br>
+<br>
+
+
+<table class="table table-hover">
+    <tr>
+        <th>Pregunta</th>
+        <th>Respuesta</th>
+        <th>Fecha</th>
+        <th>Voluntario</th>
+    </tr>
+    <tr *ngFor="let quest of (questions$  | async)">
+        <td>{{quest.question_feedback}}</td>
+        <td>{{quest.responce}}</td>
+        <td>{{quest.date_update}}</td>
+        <td>{{quest.id_volnt}}</td>
+    </tr>
+</table>
+
+</div>
+
+
+
+
+
+
+
+

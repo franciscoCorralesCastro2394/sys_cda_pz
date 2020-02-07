@@ -13,6 +13,7 @@ import { UsuariosService } from '../../services/usuarios.service';
 export class NavbarComponent implements OnInit {
   users$:Observable<any>;
   usuario_actual$:Observable<any>;
+  isLogin:boolean;
   constructor(
               private router:Router,
               private login:LoginService,
@@ -33,15 +34,26 @@ export class NavbarComponent implements OnInit {
     this.usuario_actual$ = this.dataStorageService.getObjectValue("UserNow");
   }
 
+
+  getPermisos = (rol) => {
+    for (var i = 0; i < rol.length; i++) {
+      if (this.dataStorageService.getObjectValue("roles").includes(rol[i])){
+        return true;
+      }
+    }
+    return false;
+  }
+
   logueado(email:String){
     this.router.navigate(['/private/informacion-usuario/'+email]);
   } 
 
   LoginOff(){
-      this.login.logout();
       this.dataStorageService.deleteObjValue("UserNow");
       this.dataStorageService.deleteObjValue("roles");
-      this.router.navigate(['lista-noticias']);
+      this.login.logout();
+      location.reload();
+      //this.router.navigate(['lista-noticias']);
   }
 
    Ingresar(selector:number){

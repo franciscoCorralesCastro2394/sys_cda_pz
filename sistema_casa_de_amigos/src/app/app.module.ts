@@ -34,7 +34,13 @@ import { AngularFireAuthModule } from '@angular/fire/auth';
 import { PrivateComponent } from './components/private/private.component';
 import { UsuariosComponent } from './components/usuarios/usuarios.component';
 import { Router, RouterModule } from '@angular/router';
-
+import { FormsComponent } from './componetsFeedback/forms/forms.component';
+import { CampsComponent } from './componetsFeedback/camps/camps.component';
+import { ViewDetailsFormComponent } from './componetsFeedback/view-details-form/view-details-form.component';
+import { ViewCampComponetComponent } from './componetsFeedback/view-camp-componet/view-camp-componet.component';
+import { ListQuestFormComponetComponent } from './componetsFeedback/list-quest-form-componet/list-quest-form-componet.component';
+import { FormsModule } from '@angular/forms';
+import { ResponceListComponetComponent } from './componetsFeedback/responce-list-componet/responce-list-componet.component';
 
 @NgModule({
   declarations: [
@@ -55,7 +61,13 @@ import { Router, RouterModule } from '@angular/router';
     EditSitioComponent,
     SitioSeguidoComponent,
     PrivateComponent,
-    UsuariosComponent, 
+    UsuariosComponent,
+    FormsComponent,
+    CampsComponent,
+    ViewDetailsFormComponent,
+    ViewCampComponetComponent,
+    ListQuestFormComponetComponent,
+    ResponceListComponetComponent, 
   ],
   imports: [
     BrowserModule,
@@ -68,8 +80,9 @@ import { Router, RouterModule } from '@angular/router';
     HttpClientModule,
     AngularFireModule.initializeApp(environment.fireBase),
     AngularFirestoreModule,
-    AngularFireAuthModule
-    // RouterModule.forRoot(routes,{scrollPositionRestoration:'enabled'})
+    AngularFireAuthModule,
+    FormsModule
+    //RouterModule.forRoot(routes,{scrollPositionRestoration:'enabled'})
   ],
   providers: [ DatePipe,DataStorageService],
   bootstrap: [AppComponent]

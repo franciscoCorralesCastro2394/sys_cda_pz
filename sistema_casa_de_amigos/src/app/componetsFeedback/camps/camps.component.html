@@ -1,0 +1,110 @@
+<br>
+<br>
+<br>
+<div class="container">
+    <div class="float-right" *ngIf="controlAdmin">
+        <button type="button" class="btn btn-outline-info btn-xs" data-toggle="modal" data-target="#ModalNewForm"> Nuevo
+            Campamento
+            <span class="fa fa-plus-square-o"></span>
+        </button>
+    </div>
+    <table class="table  table-hover">
+        <tr>
+            <th>ID</th>
+            <th>Campamento</th>
+            <th>Inicio</th>
+            <th>Final</th>
+            <th>Editar</th>
+            <th>Eliminar</th>
+        </tr>
+        <tr *ngFor="let camp of (camps$  | async)" data-toggle="tooltip" data-placement="top"
+            title="Doble Click para ver detalles" (dblclick)="verDetalle(camp)">
+            <td>{{camp.id_camp_group}}</td>
+            <td>{{camp.camp_mane}}</td>
+            <td>{{camp.date_ini}}</td>
+            <td>{{camp.date_end}}</td>
+            <td>
+                <div>
+                    <button type="button" class="btn btn-outline-info btn-xs">
+                        <span class="fa fa-save"></span>
+                    </button>
+                </div>
+            </td>
+            <td>
+                <div>
+                    <button type="button" class="btn btn-outline-danger btn-xs">
+                        <span class="fas fa-trash"></span>
+                    </button>
+                </div>
+            </td>
+        </tr>
+    </table>
+</div>
+
+
+<!-- Modal -->
+<div class="modal fade" id="ModalNewForm" tabindex="-1" role="dialog" aria-labelledby="ModalNewFormTitle"
+    aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle">Registrar Usario</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form [formGroup]="formGroupRegisterCamp" id="formGroupRegisterCamp">
+                    <div class="form-group">
+                        <label for="camp_mane">Nombre del Campamento</label>
+                        <input class="form-control" formControlName="camp_mane" name="camp_mane" id="camp_mane"
+                            type="text">
+                        <div *ngIf="formGroupRegisterCamp.controls['camp_mane'].dirty">
+                            <div class="form-control-feedback text-danger"
+                                *ngIf="formGroupRegisterCamp.controls['camp_mane'].errors?.required">
+                                El nombre del Campamento es requerido
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="date_ini">Fecha de Inicio</label>
+                        <input class="form-control" formControlName="date_ini" name="date_ini" id="date_ini"
+                            type="date">
+                        <div *ngIf="formGroupRegisterCamp.controls['date_ini'].dirty">
+                            <div class="form-control-feedback text-danger"
+                                *ngIf="formGroupRegisterCamp.controls['date_ini'].errors?.required">
+                                El Fecha de Inicio es requerida
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="date_end">Fecha Final</label>
+                        <input class="form-control" formControlName="date_end" name="date_end" id="date_end"
+                            type="date">
+                        <div *ngIf="formGroupRegisterCamp.controls['date_end'].dirty">
+                            <div class="form-control-feedback text-danger"
+                                *ngIf="formGroupRegisterCamp.controls['date_end'].errors?.required">
+                                El Fecha Final es requerida
+                            </div>
+                        </div>
+                    </div>
+                    <!-- <div class="form-group">
+                          <label for="id_coordinator">Coordinador</label>
+                          <input class="form-control" formControlName="id_coordinator" name="id_coordinator" id="id_coordinator" type="text">
+                          <div *ngIf="formGroupRegisterCamp.controls['id_coordinator'].dirty">
+                              <div class="form-control-feedback text-danger" *ngIf="formGroupRegisterCamp.controls['id_coordinator'].errors?.required">
+                                  El Coordinador es requerida
+                              </div>
+                          </div>
+                      </div> -->
+                </form>
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                <button type="button" data-dismiss="modal" class="btn btn-primary" (click)="nuevoCamp()">Guardar
+                    Formulario </button>
+            </div>
+        </div>
+    </div>
+</div>

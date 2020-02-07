@@ -1,147 +1,84 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { UsuariosService } from '../../services/usuarios.service';
-import { ComentariosService } from '../../services/comentariosServices/comentarios.service';
-import { CalificacionesServiceService } from '../../services/calificacionesService/calificaciones-service.service';
-import { SitioSeguidoServiceService } from '../../services/sitioSeguido/sitio-seguido-service.service';
-import { RespuestasServiceService } from '../../services/respuestasService/respuestas-service.service';
-import { SitioServiceService } from '../../services/sitiosServices/sitio-service.service';
-import { sitioSeguido } from '../../interfaces/sitiosSeguidos.interfaces';
-import { comentario } from '../../interfaces/comentario.interface';
-import { calificacion } from '../../interfaces/calificacion.interfaces';
-import { Respuesta } from '../../interfaces/respuesta.interface';
+import { FeedbackFormServiceService } from '../../servicesFeedback/feedback-form-service.service';
+import { Observable } from 'rxjs';
+import { FormByCampByVolt, FormByCampByVolunt } from '../../interfaces/feedbackInterfaces';
+import {Router} from '@angular/router';
+import { formFeedBack } from '../../interfaces/feedbackInterfaces';
+import { DataStorageService } from 'src/app/services/data-storage.service';
+import { FeedbackService } from '../../servicesFeedback/feedback.service';
+
 
 @Component({
   selector: 'app-info-usuario',
   templateUrl: './info-usuario.component.html',
-  styleUrls: ['./info-usuario.component.css']
+  styleUrls: ['./info-usuario.component.css'],
+  providers: [FeedbackFormServiceService,FeedbackService]
+
 })
 export class InfoUsuarioComponent implements OnInit {
-  userId:string;
-  users:any[] = [];
-  sitios:any[] = [];
-  sitiosS:any[] = [];
-  resenas:comentario[] = [];
-  sitiosUsuario:[] = [];
-  calificaciones:calificacion[] = []; 
-  sitiosSeguidos:sitioSeguido[] = [];
-  userLogin:any;
-  nombre:string;
-  img:string;
-  respuestas:Respuesta[] = [];
-
-
-
-
-  constructor(private activatedRoute:ActivatedRoute,
-              private usuariosService:UsuariosService,
-              private comentariosService:ComentariosService,
-              private sitioSeguidoServiceService:SitioSeguidoServiceService,
-              private sitioServiceService:SitioServiceService,
-              private calificacionesServiceService:CalificacionesServiceService,
-              private respuestasServiceService:RespuestasServiceService){
-
-    this.userId = this.activatedRoute.snapshot.params['user'];
-    
- 
-     this.cargarUsuario();
-
-    // this.getSitios(); 
-   
-    // this.getResenas();
-
-    // this.getCalificacones();
+  private forms$ : Observable<FormByCampByVolt[]>; 
+  private forms_ : FormByCampByVolt[] = []; 
+  private forms : FormByCampByVolt[] = []; 
+  userId: string;
+  users: any[] = [];
+  userLogin: any;
+  nombre: string;
+  img: string;
+  private formByCampByVolt: FormByCampByVolunt[] = [];
+  private formsByCoord$: Observable<formFeedBack[]>;
+  private user:string; 
   
-   }
+  constructor(private activatedRoute: ActivatedRoute,
+    private formsByCoord: FeedbackService,
+    private usuariosService: UsuariosService,
+    private formService:FeedbackFormServiceService,
+    private dataStorageService:DataStorageService,
+    private router:Router) {
+    this.userId = this.activatedRoute.snapshot.params['user'];
+    this.cargarUsuario();
+    this.getFormbyCampByUser();
+  }
   ngOnInit() {
+    this.getFormbyCampByUser();
+    this.getForms();
   }
 
+  getFormbyCampByUser(){
+   this.forms$ = this.formService.getFormsById(this.userId);
+  }
 
-cargarUsuario(){
+  cargarUsuario() {//car la infromacion del uaurio 
     this.usuariosService.getAllUaurios().subscribe(data => {
       this.users = data;
-        this.users.forEach((user) => {
-          if (user.Email === this.userId) {
-            this.userLogin = user;
-            this.nombre = this.userLogin.FirstName + '  ' + this.userLogin.LastName;
-            this.img = this.userLogin.Imagen;
-           }
-         });
-    });
-  }
-
-  getResenas(){
-
-    this.comentariosService.getAllComentarios().subscribe(data => {
-      this.resenas = data;
-      this.resenas = this.resenas.filter(x => x.idUsuario == this.userId);
-      for(let i=0; i < this.resenas.length; i++){
-        this.resenas[i].nombreSitio = this.nombreSitio(this.resenas[i].idSitio);
-      }
-              this.respuestasServiceService.getAllRespuestas().subscribe(dataResp => {
-                      this.resenas.forEach(res => {
-                        let respRes:Respuesta[] = [];
-                        this.respuestas.forEach(resp => {
-                          if(+resp.idResena == +res.id){
-                            respRes.push(resp);
-                          }
-                        }); 
-                         res.respuestas = respRes;
-                         });
-              });
-    });
-   
-  }
-
-  getCalificacones(){
-    this.calificacionesServiceService.getAllCalificaciones().subscribe(data => {
-      this.calificaciones = data;
-      this.calificaciones.filter(x => x.idUsuario == this.userId);
-      for(let i=0; i < this.calificaciones.length; i++){
-        this.calificaciones[i].img = this.imgSitio(this.calificaciones[i].idSitio);
-        this.calificaciones[i].nombreSitio = this.nombreSitio(this.calificaciones[i].idSitio);
-      }
-    });
-  }
-
-  getSitios(){
-    this.sitioServiceService.getAllSitios().subscribe(data => {
-      this.sitios = data;
-      this.sitioSeguidoServiceService.getAllSitiosSeguidos().subscribe(sitiosS => {
-        this.sitiosSeguidos = sitiosS;
-        this.sitiosSeguidos = this.sitiosSeguidos.filter(x => x.idUsuario == this.userId);
-        this.sitiosSeguidos.forEach(sitS => {
-          this.sitios.forEach(sit => {
-            if(sit.id == sitS.idSitio){
-               this.sitiosS.push(sit);
-            }
-          }); 
-        }); 
+      this.users.forEach((user) => {
+        if (user.Email === this.userId) {
+          this.userLogin = user;
+          this.nombre = this.userLogin.FirstName + '  ' + this.userLogin.LastName;
+          this.img = this.userLogin.Imagen;
+        }
       });
     });
   }
 
-
-  nombreSitio(id:string){
-    let nombre:string = "Nombre no encontrado";
-    this.sitios.forEach( sit => {
-        if(sit.id == id){
-          nombre = sit.nombre;
-        }
-    });
-
-    return nombre;
+  formularioConcluido(idForm:string, idCamp:string){
+    
   }
 
 
-  imgSitio(id:any){
-    let img:string = "assets/img/adventure-clouds-environment-672358.jpg";
-    this.sitios.forEach( sit => {
-        if(sit.id == id){
-          img = sit.imgs[0];
-        }
-    });
+  realizarForm(idForm:string,idCamp:string){
+    this.router.navigate(['view-list-quest-form',idForm,idCamp]);
+  }
 
-    return img;
+
+
+  getForms(){
+    this.user = this.dataStorageService.getObjectValue('UserNow');
+    this.formsByCoord$ = this.formsByCoord.getFormsByCoord(this.user);
+  }
+
+  verDetalles(data:formFeedBack){
+    this.router.navigate(['view-details-responce',data.id_form_feedback]);
   }
 }

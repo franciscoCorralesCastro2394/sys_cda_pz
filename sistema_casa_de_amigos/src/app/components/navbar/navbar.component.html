@@ -17,14 +17,32 @@
             <li class="nav-item">
                 <a class="nav-link" [routerLink]="['servicios']">Servicios</a>
             </li>
-            <li class="nav-item">
+            <!-- <li class="nav-item">
                 <a class="nav-link" [routerLink]="['private/insertar-noticias']">Agregar noticias</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" [routerLink]="['private/usuarios']">Usuarios</a>
             </li>
+            <li class="nav-item">
+                <a class="nav-link" [routerLink]="['formularios']">Formularios</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" [routerLink]="['campamentos']">Campamentos</a>
+            </li> -->
+            <li *ngIf="getPermisos(['Admin'])" class="nav-item">
+                    <a class="nav-link" [routerLink]="['private/insertar-noticias']">Agregar noticias</a>
+                </li>
+                <li *ngIf="getPermisos(['Admin'])" class="nav-item">
+                    <a class="nav-link" [routerLink]="['private/usuarios']">Usuarios</a>
+                </li>
+                <li *ngIf="getPermisos(['Admin', 'Coordinador'])" class="nav-item">
+                    <a class="nav-link" [routerLink]="['formularios']">Formularios</a>
+                </li>
+                <li *ngIf="getPermisos(['Admin', 'Coordinador'])" class="nav-item">
+                    <a class="nav-link" [routerLink]="['campamentos']">Campamentos</a>
+                </li>
             <!-- <li class="nav-item">
-                <a class="nav-link" [routerLink]="['lista-sitios']">Sitios</a>
+                <a class="nav-link" [routerLink]="['lista-sitios']">Sitios</a>campamentos
             </li> -->
             <li class="img-perfil">
                 <div *ngFor="let user of (users$ | async); let i=index;">
@@ -33,7 +51,6 @@
                     </ng-container>
                 </div>
             </li>
-
         </ul>
         <button class="btn texto_secundario my-2 my-sm-0" (click)="Ingresar(0)" type="button">Ingresar</button>
         <button class="btn texto_secundario my-2 my-sm-0" (click)="Ingresar(1)" type="button">Registro</button>
